@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { ExternalLink, Eye, Layers, Lock, ChevronLeft, ChevronRight, X, Sparkles } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
