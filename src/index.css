@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+@theme {
+  --font-kanit: 'Kanit', sans-serif;
+  --color-dark-950: #07080a;
+  --color-dark-900: #0d0f12;
+  --color-dark-850: #121414;
+  --color-dark-800: #181b20;
+  --color-dark-purple: #18011F;
+  --color-accent-purple: #7621B0;
+  --color-accent-magenta: #B600A8;
+  --color-accent-orange: #BE4C00;
+  --color-accent-cyan: #00F0FF;
+  --color-accent-text: #D7E2EA;
+}
+
+:root {
+  --bg-primary: #0a0b0d;
+  --text-primary: #D7E2EA;
+  --accent-purple: #7621B0;
+  --accent-magenta: #B600A8;
+  --accent-orange: #BE4C00;
+  --glow-padding: 2px;
+  --glow-color: #B600A8;
+}
+
+/* Base Body Styles */
+html, body {
+  background-color: #0a0b0d;
+  color: #D7E2EA;
+  font-family: 'Kanit', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0b0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #232730;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7621B0;
+}
+
+/* Typography Gradient */
+.hero-heading {
+  background: linear-gradient(180deg, #7c838e, #e2edf5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  will-change: transform;
+}
+
+.hero-heading-bright {
+  background: linear-gradient(180deg, #ffffff, #cfdce6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-heading-purple {
+  background: linear-gradient(135deg, #ffffff 20%, #c084fc 60%, #b600a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 3D Interactive Reticle Cursor */
+.target-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.target-cursor-corner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #b600a8;
+  box-shadow: 0 0 10px rgba(182, 0, 168, 0.6);
+  pointer-events: none;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.corner-tl {
+  transform: translate(-18px, -18px);
+  border-right: 0;
+  border-bottom: 0;
+}
+.corner-tr {
+  transform: translate(4px, -18px);
+  border-left: 0;
+  border-bottom: 0;
+}
+.corner-br {
+  transform: translate(4px, 4px);
+  border-left: 0;
+  border-top: 0;
+}
+.corner-bl {
+  transform: translate(-18px, 4px);
+  border-right: 0;
+  border-top: 0;
+}
+
+/* Hovering target interactive state */
+.cursor-hover .corner-tl {
+  transform: translate(-26px, -26px);
+  border-color: #00F0FF;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.8);
+}
+.cursor-hover .corner-tr {
+  transform: translate(12px, -26px);
+  border-color: #00F0FF;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.8);
+}
+.cursor-hover .corner-br {
+  transform: translate(12px, 12px);
+  border-color: #00F0FF;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.8);
+}
+.cursor-hover .corner-bl {
+  transform: translate(-26px, 12px);
+  border-color: #00F0FF;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.8);
+}
+
+.cursor-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px #b600a8;
+  pointer-events: none;
+}
+
+/* Infinite Logo Carousel */
+.logoloop {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+}
+
+.logoloop__track {
+  display: flex;
+  width: max-content;
+  animation: logo-scroll 32s linear infinite;
+}
+
+.logoloop__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes logo-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Keyframes for Floating and Glowing Orbs */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes orb-pulse {
+  0%, 100% {
+    box-shadow: 0 0 60px 10px rgba(182, 0, 168, 0.35), 0 0 140px 40px rgba(118, 33, 176, 0.22), inset 0 0 60px rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 80px 20px rgba(182, 0, 168, 0.55), 0 0 180px 60px rgba(118, 33, 176, 0.35), inset 0 0 70px rgba(255, 255, 255, 0.15);
+  }
+}
+
+.orb-pulse {
+  animation: orb-pulse 4s ease-in-out infinite;
+}
+
+@keyframes orb-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-orb-spin {
+  animation: orb-spin 25s linear infinite;
+}
+
+/* Glowing Dynamic Card */
+.glow-card {
+  position: relative;
+  border-radius: 24px;
+  background: rgba(18, 20, 20, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(215, 226, 234, 0.1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glow-card:hover {
+  border-color: rgba(182, 0, 168, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(118, 33, 176, 0.35);
+}
+
+/* Dynamic Interactive True Focus Frame */
+.true-focus {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.25em;
+  margin: 0;
+  user-select: none;
+}
+
+.true-focus__word {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: filter 0.4s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.true-focus__frame {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 6px;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.true-focus__corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #b600a8;
+  filter: drop-shadow(0 0 8px rgba(182, 0, 168, 0.9));
+}
+
+.true-focus__corner--top-left {
+  top: -8px;
+  left: -8px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.true-focus__corner--top-right {
+  top: -8px;
+  right: -8px;
+  border-bottom: 0;
+  border-left: 0;
+}
+.true-focus__corner--bottom-left {
+  bottom: -8px;
+  left: -8px;
+  border-top: 0;
+  border-right: 0;
+}
+.true-focus__corner--bottom-right {
+  right: -8px;
+  bottom: -8px;
+  border-top: 0;
+  border-left: 0;
+}
+
+/* Futuristic Grid Background */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(215, 226, 234, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(215, 226, 234, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
