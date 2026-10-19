@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import NeuralBackground from './NeuralBackground';
-import { Sparkles, ArrowDownRight, Compass, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Sparkles, Terminal, MapPin, CheckCircle2 } from 'lucide-react';
+import { GithubIcon } from './SocialIcons';
 
 export default function HeroSection() {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -20;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
     setTilt({ x, y });
   };
 
@@ -21,101 +22,113 @@ export default function HeroSection() {
       id="hero"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative flex min-h-screen w-full flex-col justify-between overflow-hidden pt-24 pb-8 md:pb-12"
+      className="relative min-h-[92vh] flex flex-col justify-center items-center px-6 pt-32 pb-16 overflow-hidden"
     >
-      {/* Three.js Interactive Neural Constellation Background */}
-      <NeuralBackground className="pointer-events-none absolute inset-0 h-full w-full opacity-80" />
+      {/* Linear Ambient Top Spotlight */}
+      <div className="pointer-events-none absolute inset-0 ambient-spotlight" />
+      
+      {/* Three.js Neural Constellation Background */}
+      <NeuralBackground className="pointer-events-none absolute inset-0 h-full w-full opacity-60" />
 
-      {/* Subtle Ambient Radial Glows */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-gradient-to-b from-[#7621B0]/25 via-[#B600A8]/10 to-transparent blur-3xl" />
+      {/* Subtle Grid Pattern Overlay */}
+      <div className="pointer-events-none absolute inset-0 linear-grid opacity-50" />
 
-      {/* Top Tagline / Category chips */}
-      <div className="relative z-10 mx-auto mt-6 flex flex-wrap items-center justify-center gap-3 px-6">
-        <span className="flex items-center gap-1.5 rounded-full bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-widest text-[#D7E2EA]/90 border border-white/[0.08] backdrop-blur-md">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#00F0FF] animate-pulse"></span>
-          Data Science & AI Engineer
-        </span>
-        <span className="hidden sm:flex items-center gap-1.5 rounded-full bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-widest text-[#D7E2EA]/90 border border-white/[0.08] backdrop-blur-md">
-          Full Stack Architecture
-        </span>
-        <span className="flex items-center gap-1.5 rounded-full bg-white/[0.04] px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-widest text-[#D7E2EA]/90 border border-white/[0.08] backdrop-blur-md">
-          Casablanca, MA
-        </span>
-      </div>
-
-      {/* Main Giant Hero Title */}
-      <div className="relative z-10 w-full overflow-hidden text-center my-auto">
-        <h1
-          className="hero-heading select-none w-full whitespace-nowrap text-center font-kanit font-black uppercase leading-none tracking-tight text-[12.5vw] sm:text-[13.5vw] md:text-[14.5vw] lg:text-[15.5vw]"
-          style={{
-            transform: `perspective(1000px) rotateX(${tilt.y * 0.25}deg) rotateY(${tilt.x * 0.25}deg)`,
-            transition: 'transform 0.1s ease-out'
-          }}
-        >
-          Hi, i'm fakir
-        </h1>
-      </div>
-
-      {/* 3D Avatar Centerpiece with Glowing Orb & Mouse Parallax */}
-      <div className="relative z-20 mx-auto -mt-16 sm:-mt-24 md:-mt-32 flex flex-col items-center justify-center">
-        <div
-          className="relative w-[260px] sm:w-[320px] md:w-[380px] lg:w-[440px] transition-transform duration-200 ease-out"
-          style={{
-            transform: `perspective(1000px) rotateX(${tilt.y * 0.8}deg) rotateY(${tilt.x * 0.8}deg) translateZ(30px)`,
-          }}
-        >
-          {/* Animated Pulsing Neon Orb Behind Head */}
-          <div
-            className="orb-pulse absolute left-1/2 top-[45%] h-[75%] w-[115%] -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(182,0,168,0.55) 0%, rgba(118,33,176,0.35) 45%, transparent 72%)",
-              filter: "blur(32px)",
-            }}
-          />
-
-          {/* 3D Avatar Image with smooth radial falloff mask */}
-          <img
-            src="/head.png"
-            alt="Mohammed Fakir — 3D avatar"
-            className="relative w-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)] filter brightness-105"
-            style={{
-              WebkitMaskImage: "radial-gradient(52% 52% at 50% 50%, black 78%, transparent 100%)",
-              maskImage: "radial-gradient(52% 52% at 50% 50%, black 78%, transparent 100%)",
-            }}
-          />
+      <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center">
+        {/* Top Announcement Pill */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-md mb-8 hover:border-white/20 transition-all duration-300">
+          <span className="flex h-2 w-2 rounded-full bg-cyan-400"></span>
+          <span className="font-mono text-xs text-zinc-300 tracking-wide">
+            Data Science & AI Systems · Full Stack Architecture
+          </span>
         </div>
-      </div>
 
-      {/* Bottom Bar: Bio snippet + CTA button */}
-      <div className="relative z-10 mt-auto flex flex-col sm:flex-row items-center justify-between gap-6 px-6 sm:px-12 max-w-7xl mx-auto w-full">
-        {/* Left Bio Tagline */}
-        <p
-          className="max-w-[280px] sm:max-w-[320px] md:max-w-[360px] font-kanit font-light uppercase leading-snug tracking-wide text-[#D7E2EA] text-center sm:text-left text-xs sm:text-sm md:text-base opacity-90"
-        >
-          A data scientist & full stack developer crafting intelligent, unforgettable products
+        {/* Hero Title with Metallic Silver Gradient */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold tracking-tight leading-[1.08] mb-6 text-gradient-silver">
+          Engineering Intelligence.
+          <br />
+          <span className="text-zinc-400 font-normal">From Model to Production.</span>
+        </h1>
+
+        {/* Crisp Subtitle */}
+        <p className="max-w-2xl text-base sm:text-lg text-zinc-400 leading-relaxed mb-10 font-normal">
+          I am <span className="text-white font-medium">Mohammed Fakir</span> — bridging deep learning,
+          generative AI pipelines (LLMs/RAG) and high-throughput data engineering with polished full-stack web products.
         </p>
 
-        {/* Action Button: Contact Me */}
-        <div className="flex items-center gap-4">
+        {/* Action Button Row */}
+        <div className="flex flex-wrap items-center justify-center gap-3.5 mb-16">
           <a
             href="#projects"
-            className="cursor-target hidden lg:inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-xs font-semibold uppercase tracking-widest text-[#D7E2EA] bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 transition-all duration-300 hover:border-white/20"
+            className="cursor-target shimmer-btn inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-semibold uppercase tracking-wider"
           >
-            <Compass className="h-4 w-4 text-[#00F0FF]" />
-            Explore Projects
+            <span>Explore Projects</span>
+            <ArrowRight className="h-4 w-4" />
           </a>
 
           <a
             href="#contact"
-            className="cursor-target inline-flex items-center gap-2.5 rounded-xl px-8 py-3.5 sm:px-10 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white transition-all duration-300 hover:brightness-125 hover:shadow-[0_0_35px_rgba(182,0,168,0.65)] hover:-translate-y-0.5"
+            className="cursor-target inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-zinc-200 text-xs sm:text-sm font-medium tracking-wide transition-all duration-200 backdrop-blur-sm"
+          >
+            <span>Get in touch</span>
+            <ArrowUpRight className="h-4 w-4 text-zinc-400" />
+          </a>
+
+          <a
+            href="https://github.com/Symooomzip"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-target inline-flex items-center gap-2 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-zinc-300 transition-all duration-200"
+            title="GitHub Profile"
+          >
+            <GithubIcon className="h-4 w-4" />
+          </a>
+        </div>
+
+        {/* 3D Avatar Centerpiece with Subtle Floating Ring */}
+        <div className="relative mb-12">
+          <div
+            className="relative w-[180px] sm:w-[220px] md:w-[250px] transition-transform duration-300 ease-out"
             style={{
-              background: "linear-gradient(123deg, #7621B0 0%, #B600A8 100%)",
-              boxShadow: "0 10px 30px -5px rgba(182, 0, 168, 0.4)"
+              transform: `perspective(1000px) rotateX(${tilt.y * 0.6}deg) rotateY(${tilt.x * 0.6}deg)`,
             }}
           >
-            <span>Contact Me</span>
-            <ArrowDownRight className="h-4 w-4" />
-          </a>
+            {/* Subtle Cyan Diffused Ambient Glow */}
+            <div className="absolute inset-0 rounded-full bg-cyan-500/15 blur-2xl -z-10" />
+
+            <img
+              src="/head.png"
+              alt="Mohammed Fakir"
+              className="relative w-full drop-shadow-[0_15px_35px_rgba(0,0,0,0.8)] filter brightness-105"
+              style={{
+                WebkitMaskImage: "radial-gradient(54% 54% at 50% 50%, black 78%, transparent 100%)",
+                maskImage: "radial-gradient(54% 54% at 50% 50%, black 78%, transparent 100%)",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Minimalist Specs Metric Strip */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 pt-8 border-t border-white/[0.08] w-full max-w-3xl">
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-1">Education</span>
+            <span className="font-sans font-semibold text-sm text-zinc-200">Master in AI</span>
+            <span className="text-[11px] text-zinc-500">Data Science & ML</span>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-1">Production</span>
+            <span className="font-sans font-semibold text-sm text-zinc-200">04+ Systems</span>
+            <span className="text-[11px] text-zinc-500">RAG, CV, CLV, BI</span>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-1">Stack</span>
+            <span className="font-sans font-semibold text-sm text-zinc-200">End-to-End</span>
+            <span className="text-[11px] text-zinc-500">Python · React · .NET</span>
+          </div>
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider mb-1">Location</span>
+            <span className="font-sans font-semibold text-sm text-zinc-200">Casablanca</span>
+            <span className="text-[11px] text-zinc-500">Remote & Hybrid</span>
+          </div>
         </div>
       </div>
     </section>

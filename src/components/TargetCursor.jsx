@@ -2,21 +2,22 @@ import React, { useEffect, useState, useRef } from 'react';
 
 export default function TargetCursor() {
   const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [ringPos, setRingPos] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const cursorRef = useRef({ x: -100, y: -100 });
+
   const targetRef = useRef({ x: -100, y: -100 });
+  const ringRef = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
-    // Only enable on desktop devices with pointer
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
     const handleMouseMove = (e) => {
       targetRef.current = { x: e.clientX, y: e.clientY };
+      setPosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
 
-      const target = e.target;
-      const isInteractive = target.closest('a, button, input, textarea, select, .cursor-target, .glow-card');
+      const isInteractive = e.target.closest('a, button, input, textarea, select, .cursor-target, .bento-card');
       setIsHovering(!!isInteractive);
     };
 
@@ -28,13 +29,13 @@ export default function TargetCursor() {
     document.addEventListener('mouseenter', handleMouseEnter);
 
     let frameId;
-    const updateCursor = () => {
-      cursorRef.current.x += (targetRef.current.x - cursorRef.current.x) * 0.22;
-      cursorRef.current.y += (targetRef.current.y - cursorRef.current.y) * 0.22;
-      setPosition({ x: cursorRef.current.x, y: cursorRef.current.y });
-      frameId = requestAnimationFrame(updateCursor);
+    const animate = () => {
+      ringRef.current.x += (targetRef.current.x - ringRef.current.x) * 0.18;
+      ringRef.current.y += (targetRef.current.y - ringRef.current.y) * 0.18;
+      setRingPos({ x: ringRef.current.x, y: ringRef.current.y });
+      frameId = requestAnimationFrame(animate);
     };
-    frameId = requestAnimationFrame(updateCursor);
+    frameId = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(frameId);
@@ -47,18 +48,23 @@ export default function TargetCursor() {
   if (!isVisible) return null;
 
   return (
-    <div
-      className={`target-cursor-wrapper ${isHovering ? 'cursor-hover' : ''}`}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        opacity: isVisible ? 1 : 0,
-      }}
-    >
-      <div className="cursor-dot" />
-      <div className="target-cursor-corner corner-tl" />
-      <div className="target-cursor-corner corner-tr" />
-      <div className="target-cursor-corner corner-br" />
-      <div className="target-cursor-corner corner-bl" />
+    <div className={isHovering ? 'cursor-hover' : ''}>
+      {/* Outer subtle lagging ring */}
+      <div
+        className="cursor-ring"
+        style={{
+          transform: `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%, -50%)`,
+          opacity: isVisible ? 1 : 0,
+        }}
+      />
+      {/* Inner instant point */}
+      <div
+        className="cursor-dot"
+        style={{
+          transform: `translate(${position.x}px, ${position.y}px) translate(-50%, -50%)`,
+          opacity: isVisible ? 1 : 0,
+        }}
+      />
     </div>
   );
 }

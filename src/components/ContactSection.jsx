@@ -1,181 +1,150 @@
 import React, { useState } from 'react';
-import TrueFocus from './TrueFocus';
-import { Mail, Copy, Check, Send, Sparkles, MapPin, Download } from 'lucide-react';
+import { Mail, Copy, Check, Send, Sparkles, MapPin, ArrowUpRight } from 'lucide-react';
 import { LinkedinIcon, GithubIcon } from './SocialIcons';
 import confetti from 'canvas-confetti';
 
-const CONTACT_LINKS = [
-  {
-    label: "mr.fakir.mohammed@gmail.com",
-    href: "mailto:mr.fakir.mohammed@gmail.com",
-    icon: Mail,
-    isEmail: true
-  },
-  {
-    label: "LinkedIn",
-    sub: "/in/mohammed-fakir",
-    href: "https://linkedin.com/in/mohammed-fakir",
-    icon: LinkedinIcon
-  },
-  {
-    label: "GitHub",
-    sub: "@Symooomzip",
-    href: "https://github.com/Symooomzip",
-    icon: GithubIcon
-  }
-];
-
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', role: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
   const handleCopy = (e) => {
     e.preventDefault();
     navigator.clipboard.writeText('mr.fakir.mohammed@gmail.com');
     setCopied(true);
-    confetti({
-      particleCount: 50,
-      spread: 70,
-      origin: { y: 0.8 }
-    });
-    setTimeout(() => setCopied(false), 3000);
+    confetti({ particleCount: 35, spread: 60, origin: { y: 0.85 } });
+    setTimeout(() => setCopied(false), 2500);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    confetti({
-      particleCount: 80,
-      spread: 90,
-      origin: { y: 0.7 }
-    });
+    confetti({ particleCount: 60, spread: 80, origin: { y: 0.7 } });
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ name: '', email: '', role: '', message: '' });
+      setFormData({ name: '', email: '', message: '' });
     }, 4000);
   };
 
   return (
-    <section
-      id="contact"
-      className="relative flex min-h-[90vh] flex-col items-center justify-center px-6 py-28 sm:px-10 md:px-14 bg-[#0a0b0d] overflow-hidden"
-    >
-      {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-gradient-to-t from-[#7621B0]/20 via-[#B600A8]/10 to-transparent blur-[140px]" />
-
-      <div className="relative z-10 max-w-4xl w-full mx-auto flex flex-col items-center text-center">
-        {/* Animated TrueFocus Headline */}
-        <div className="mb-6 w-full flex justify-center">
-          <TrueFocus
-            sentence="LET'S TALK"
-            manualMode={false}
-            blurAmount={4}
-            borderColor="#B600A8"
-            glowColor="rgba(182, 0, 168, 0.8)"
-            animationDuration={0.5}
-            pauseBetweenAnimations={1.5}
-            wordClassName="hero-heading uppercase font-kanit font-black tracking-tight text-5xl sm:text-7xl md:text-8xl"
-          />
+    <section id="contact" className="relative py-28 px-6 bg-[#050507] border-t border-white/[0.06]">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex flex-col items-center text-center mb-16">
+          <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
+            <span>// Inquiry</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-sans font-bold tracking-tight text-white mb-4">
+            Let's Build Something Exceptional.
+          </h2>
+          <p className="max-w-lg text-sm text-zinc-400 font-normal leading-relaxed">
+            Open for Senior AI Engineering, Data Scientist roles, and strategic technical consulting.
+          </p>
         </div>
 
-        {/* Subtitle */}
-        <p className="max-w-[580px] font-kanit font-light text-[#D7E2EA]/85 text-base sm:text-lg md:text-xl leading-relaxed mb-12">
-          Open to <span className="text-[#00F0FF] font-medium">Data Scientist</span>,{' '}
-          <span className="text-[#c084fc] font-medium">AI Engineer</span> and{' '}
-          <span className="text-[#f472b6] font-medium">Full Stack roles</span> — or any project that needs
-          both the product and the intelligence behind it.
-        </p>
-
-        {/* Quick Contact Action Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
+        {/* Contact Links Strip */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-12">
           {/* Email button with Copy */}
           <button
             onClick={handleCopy}
-            className="cursor-target group flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-white/[0.04] hover:bg-[#B600A8]/20 border border-white/10 hover:border-[#B600A8]/50 text-white font-mono text-xs sm:text-sm transition-all duration-300 shadow-lg"
+            className="bento-card p-4 flex items-center justify-between group cursor-target text-left"
           >
-            <Mail className="h-4 w-4 text-[#00F0FF]" />
-            <span className="font-semibold tracking-wide">mr.fakir.mohammed@gmail.com</span>
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.04] text-cyan-400 border border-white/[0.08]">
+                <Mail className="h-4 w-4" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-mono text-zinc-500 uppercase">Direct Email</span>
+                <span className="text-xs font-mono font-medium text-zinc-200">mr.fakir.mohammed@gmail.com</span>
+              </div>
+            </div>
             {copied ? (
-              <span className="flex items-center gap-1 text-emerald-400 font-mono text-[11px]">
-                <Check className="h-3.5 w-3.5" /> Copied!
-              </span>
+              <Check className="h-4 w-4 text-emerald-400 shrink-0" />
             ) : (
-              <Copy className="h-3.5 w-3.5 opacity-40 group-hover:opacity-100 transition-opacity" />
+              <Copy className="h-3.5 w-3.5 text-zinc-600 group-hover:text-zinc-300 transition-colors shrink-0" />
             )}
           </button>
 
-          {/* LinkedIn Link */}
+          {/* LinkedIn */}
           <a
             href="https://linkedin.com/in/mohammed-fakir"
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-target flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-white/20 text-white font-mono text-xs sm:text-sm transition-all duration-300"
+            className="bento-card p-4 flex items-center justify-between group cursor-target"
           >
-            <LinkedinIcon className="h-4 w-4 text-[#0077b5]" />
-            <span className="font-semibold">LinkedIn</span>
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.04] text-[#0A66C2] border border-white/[0.08]">
+                <LinkedinIcon className="h-4 w-4" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-mono text-zinc-500 uppercase">Professional</span>
+                <span className="text-xs font-mono font-medium text-zinc-200">/in/mohammed-fakir</span>
+              </div>
+            </div>
+            <ArrowUpRight className="h-4 w-4 text-zinc-600 group-hover:text-zinc-300 transition-colors shrink-0" />
           </a>
 
-          {/* GitHub Link */}
+          {/* GitHub */}
           <a
             href="https://github.com/Symooomzip"
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-target flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 hover:border-white/20 text-white font-mono text-xs sm:text-sm transition-all duration-300"
+            className="bento-card p-4 flex items-center justify-between group cursor-target"
           >
-            <GithubIcon className="h-4 w-4 text-white" />
-            <span className="font-semibold">GitHub</span>
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.04] text-zinc-200 border border-white/[0.08]">
+                <GithubIcon className="h-4 w-4" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] font-mono text-zinc-500 uppercase">Open Source</span>
+                <span className="text-xs font-mono font-medium text-zinc-200">@Symooomzip</span>
+              </div>
+            </div>
+            <ArrowUpRight className="h-4 w-4 text-zinc-600 group-hover:text-zinc-300 transition-colors shrink-0" />
           </a>
         </div>
 
-        {/* Interactive Direct Message Card */}
-        <div className="glow-card w-full max-w-2xl text-left p-8 sm:p-10 border border-white/10 mb-16">
-          <div className="flex items-center justify-between mb-6 border-b border-white/[0.08] pb-4">
+        {/* Message Card */}
+        <div className="bento-card p-8 border border-white/[0.08] mb-16">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
             <div>
-              <h3 className="font-kanit font-bold text-xl uppercase tracking-wider text-white">
-                Send a Message
-              </h3>
-              <p className="text-xs text-[#D7E2EA]/60 font-light mt-0.5">
-                Direct inquiry · Usually responds within 24 hours
-              </p>
+              <h3 className="text-base font-semibold text-white">Send a Direct Message</h3>
+              <p className="text-xs text-zinc-500 mt-0.5">Expect response within 24 business hours</p>
             </div>
-            <div className="flex items-center gap-1.5 font-mono text-xs text-[#00F0FF]">
-              <MapPin className="h-3.5 w-3.5" />
+            <div className="flex items-center gap-1.5 font-mono text-[11px] text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
               <span>Casablanca, MA</span>
             </div>
           </div>
 
           {submitted ? (
-            <div className="py-12 flex flex-col items-center justify-center text-center">
-              <div className="h-14 w-14 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-4 animate-bounce">
-                <Check className="h-7 w-7" />
+            <div className="py-10 flex flex-col items-center text-center">
+              <div className="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3">
+                <Check className="h-5 w-5" />
               </div>
-              <h4 className="font-kanit font-bold text-xl text-white uppercase mb-1">
-                Message Dispatched!
-              </h4>
-              <p className="text-xs text-[#D7E2EA]/75 max-w-sm">
-                Thank you! Your inquiry has been recorded. Mohammed will review it shortly.
+              <h4 className="font-sans font-semibold text-white text-base">Inquiry Dispatched</h4>
+              <p className="text-xs text-zinc-400 mt-1 max-w-xs">
+                Your message has been transmitted. Mohammed will review it shortly.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/50 mb-1.5">
-                    Your Name
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                    Name
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. John Doe"
+                    placeholder="Your name or company"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-xs sm:text-sm text-white placeholder-white/30 focus:border-[#B600A8] focus:outline-none transition-colors"
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/[0.08] px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-white/50 mb-1.5">
-                    Your Email
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
+                    Email
                   </label>
                   <input
                     type="email"
@@ -183,56 +152,39 @@ export default function ContactSection() {
                     placeholder="name@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-xs sm:text-sm text-white placeholder-white/30 focus:border-[#B600A8] focus:outline-none transition-colors"
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/[0.08] px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-white/50 mb-1.5">
-                  Opportunity Type / Subject
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Full-time Role / AI Project Consultation / Freelance"
-                  value={formData.role}
-                  onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                  className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-xs sm:text-sm text-white placeholder-white/30 focus:border-[#B600A8] focus:outline-none transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-white/50 mb-1.5">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
                   Message
                 </label>
                 <textarea
                   rows="4"
                   required
-                  placeholder="Tell me about your team, problem space, or product goals..."
+                  placeholder="Outline your team, product objectives, or project scope..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3 text-xs sm:text-sm text-white placeholder-white/30 focus:border-[#B600A8] focus:outline-none transition-colors resize-none"
+                  className="w-full rounded-xl bg-white/[0.03] border border-white/[0.08] px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="cursor-target mt-2 inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-6 font-kanit font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:brightness-125 shadow-lg"
-                style={{
-                  background: "linear-gradient(123deg, #7621B0 0%, #B600A8 100%)",
-                  boxShadow: "0 8px 25px -4px rgba(182, 0, 168, 0.45)"
-                }}
+                className="cursor-target shimmer-btn inline-flex items-center justify-center gap-2 py-3 px-6 text-xs font-semibold uppercase tracking-wider text-black mt-2"
               >
-                <Send className="h-4 w-4" />
-                <span>Transmit Message</span>
+                <Send className="h-3.5 w-3.5" />
+                <span>Transmit Inquiry</span>
               </button>
             </form>
           )}
         </div>
 
-        {/* Footer */}
-        <footer className="mt-8 text-center text-xs font-light uppercase tracking-widest text-[#D7E2EA]/40">
-          Designed & built by Mohammed Fakir · Casablanca · © {new Date().getFullYear()}
+        {/* Minimal Footer */}
+        <footer className="text-center font-mono text-[11px] text-zinc-600">
+          Crafted by Mohammed Fakir · Casablanca, MA · © {new Date().getFullYear()}
         </footer>
       </div>
     </section>

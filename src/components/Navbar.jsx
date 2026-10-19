@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sparkles, Terminal } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Expertise', href: '#expertise' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Overview', href: '#hero' },
+  { label: 'Capabilities', href: '#expertise' },
+  { label: 'Selected Works', href: '#projects' },
+  { label: 'Background', href: '#about' },
   { label: 'Contact', href: '#contact' }
 ];
 
@@ -14,7 +15,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -24,95 +25,88 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'py-3 bg-[#0a0b0d]/80 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl'
+          ? 'py-3.5 bg-[#050507]/80 backdrop-blur-xl border-b border-white/[0.08]'
           : 'py-6 bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Brand / Logo */}
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        {/* Brand / Name */}
         <a
           href="#"
-          className="group flex items-center gap-2.5 cursor-target text-white font-kanit font-black tracking-wider text-xl uppercase"
+          className="group flex items-center gap-2.5 cursor-target text-white font-sans font-bold tracking-tight text-base"
         >
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#7621B0] to-[#B600A8] p-0.5 shadow-[0_0_15px_rgba(182,0,168,0.5)]">
-            <div className="h-full w-full rounded-[6px] bg-[#0a0b0d] flex items-center justify-center font-mono font-black text-xs text-[#00F0FF]">
-              MF
-            </div>
-          </div>
-          <span className="hidden sm:inline-block font-extrabold tracking-tight text-white group-hover:text-[#D7E2EA] transition-colors">
-            FAKIR<span className="text-[#B600A8]">.AI</span>
+          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white text-black font-mono font-bold text-xs">
+            MF
+          </span>
+          <span className="text-zinc-200 group-hover:text-white transition-colors">
+            Mohammed Fakir
+          </span>
+          <span className="hidden sm:inline-block text-xs font-mono text-zinc-500">
+            / AI Systems
           </span>
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-12">
+        <nav className="hidden md:flex items-center gap-1 p-1 rounded-full bg-white/[0.03] border border-white/[0.06] backdrop-blur-md">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="cursor-target font-kanit text-sm lg:text-base font-medium uppercase tracking-wider text-[#D7E2EA]/75 hover:text-white transition-colors duration-200 relative group"
+              className="cursor-target px-4 py-1.5 rounded-full text-xs font-medium text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#7621B0] to-[#B600A8] group-hover:w-full transition-all duration-300" />
             </a>
           ))}
         </nav>
 
-        {/* Right Action: Status Pill & Contact CTA */}
-        <div className="hidden sm:flex items-center gap-4">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono tracking-wider">
-            <span className="relative flex h-2 w-2">
+        {/* Right Status & Contact Action */}
+        <div className="hidden sm:flex items-center gap-3">
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-mono">
+            <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span>
             </span>
-            <span>AVAILABLE FOR WORK</span>
+            <span>Available</span>
           </div>
 
           <a
             href="#contact"
-            className="cursor-target inline-flex items-center gap-2 rounded-xl px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:brightness-125 hover:shadow-[0_0_20px_rgba(182,0,168,0.5)]"
-            style={{
-              background: "linear-gradient(135deg, #7621B0 0%, #B600A8 100%)"
-            }}
+            className="cursor-target flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium bg-white text-black hover:bg-zinc-200 transition-all duration-200 shadow-sm"
           >
-            <Sparkles className="h-3.5 w-3.5" />
-            LET'S TALK
+            <span>Let's talk</span>
+            <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile menu trigger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-white/[0.05] border border-white/10 text-white"
+          className="md:hidden p-2 rounded-lg bg-white/[0.04] border border-white/10 text-white"
         >
-          {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-white/10 bg-[#0f1115]/95 backdrop-blur-2xl px-6 py-6 flex flex-col gap-4">
+        <div className="md:hidden border-b border-white/10 bg-[#08090C]/95 backdrop-blur-2xl px-6 py-6 flex flex-col gap-3">
           {NAV_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-kanit font-medium uppercase tracking-wider text-[#D7E2EA] hover:text-[#B600A8]"
+              className="text-sm font-medium text-zinc-300 hover:text-white py-1"
             >
               {link.label}
             </a>
           ))}
           <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              AVAILABLE FOR ROLES & FREELANCE
-            </div>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-center rounded-xl py-3 text-xs font-semibold uppercase tracking-wider text-white bg-gradient-to-r from-[#7621B0] to-[#B600A8]"
+              className="text-center rounded-xl py-2.5 text-xs font-semibold bg-white text-black"
             >
-              LET'S TALK
+              Get in touch
             </a>
           </div>
         </div>

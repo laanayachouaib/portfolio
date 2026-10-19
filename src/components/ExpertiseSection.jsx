@@ -1,129 +1,117 @@
-import React, { useState } from 'react';
-import { GeometricShape } from './GeometricDecorations';
-import { ArrowUpRight } from 'lucide-react';
+import React from 'react';
+import { Brain, Cpu, Database, Layout, BarChart3, Code2, ArrowUpRight } from 'lucide-react';
 
-const EXPERTISE_DATA = [
+const CAPABILITIES = [
   {
+    icon: Brain,
     num: "01",
-    name: "Machine Learning",
-    description: "Design, training and evaluation of predictive models — churn prediction, customer segmentation, computer vision — with scikit-learn, XGBoost, PyTorch and TensorFlow.",
-    chips: ["scikit-learn", "XGBoost", "PyTorch", "TensorFlow"],
-    accent: "#7621B0"
+    title: "Generative AI & LLM Orchestration",
+    tagline: "Production RAG Pipelines & Embeddings",
+    description: "Architecting end-to-end Retrieval-Augmented Generation (RAG) with vector databases (ChromaDB), LangChain orchestration, and parameter-efficient fine-tuning (LoRA/PEFT).",
+    techs: ["LangChain", "ChromaDB", "LoRA / PEFT", "Hugging Face", "Vector Search"],
+    span: "md:col-span-8"
   },
   {
+    icon: Cpu,
     num: "02",
-    name: "Generative AI",
-    description: "LLM-powered systems built for production: RAG pipelines with vector databases, efficient fine-tuning with LoRA/PEFT, LangChain orchestration and Hugging Face deployment.",
-    chips: ["LangChain", "RAG", "LoRA / PEFT", "Hugging Face", "ChromaDB"],
-    accent: "#B600A8"
+    title: "Machine Learning & Vision",
+    tagline: "Predictive Models & SAR Satellite CV",
+    description: "Designing, training, and deploying high-precision computer vision (IoU 0.88 SAR segmentation) and classification models with PyTorch and Scikit-Learn.",
+    techs: ["PyTorch", "XGBoost", "Scikit-Learn", "OpenCV"],
+    span: "md:col-span-4"
   },
   {
+    icon: Database,
     num: "03",
-    name: "Data Engineering",
-    description: "Complete ETL pipelines: extraction, cleaning and centralization of raw business data into data warehouses — SQL Server, MongoDB, MySQL — ready for analysis and modeling.",
-    chips: ["ETL Pipelines", "SQL Server", "MongoDB", "MySQL", "Data Warehousing"],
-    accent: "#BE4C00"
+    title: "Data Engineering & Pipelines",
+    tagline: "High-Throughput ETL & Warehousing",
+    description: "Complete extraction, cleaning, and transformation pipelines consolidating disparate business data into optimized SQL Server, MongoDB, and MySQL data warehouses.",
+    techs: ["SQL Server", "MongoDB", "MySQL", "ETL Pipelines", "Data Modeling"],
+    span: "md:col-span-4"
   },
   {
+    icon: Layout,
     num: "04",
-    name: "Full Stack Development",
-    description: "Production web applications from front to back — MERN stack, .NET, REST APIs — plus mobile apps with Flutter and native Android.",
-    chips: ["React", "Node.js", ".NET", "REST APIs", "Flutter", "Tailwind CSS"],
-    accent: "#00F0FF"
+    title: "Full-Stack Web & Mobile Architecture",
+    tagline: "Modern Reactive Frontends & Scalable Backends",
+    description: "Building production-grade web applications in React & Node.js, enterprise REST APIs in .NET, plus cross-platform mobile experiences with Flutter.",
+    techs: ["React", "Node.js", ".NET Core", "REST APIs", "Flutter", "Tailwind"],
+    span: "md:col-span-4"
   },
   {
+    icon: BarChart3,
     num: "05",
-    name: "Business Intelligence",
-    description: "Power BI dashboards that turn KPIs into decisions — data modeling, DAX, and visual storytelling for business teams.",
-    chips: ["Power BI", "DAX", "Data Modeling", "Executive KPIs", "Excel"],
-    accent: "#7621B0"
+    title: "Business Intelligence & Analytics",
+    tagline: "Executive Storytelling & DAX Modeling",
+    description: "Transforming raw behavioral data and market signals into intuitive, executive-ready Power BI dashboards driven by advanced DAX calculations.",
+    techs: ["Power BI", "DAX", "Executive KPIs", "Data Analytics"],
+    span: "md:col-span-4"
   }
 ];
 
 export default function ExpertiseSection() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   return (
-    <section
-      id="expertise"
-      className="relative overflow-hidden rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] bg-[#18011F] px-6 py-24 sm:px-10 sm:py-28 md:px-14 md:py-36 -mt-8 sm:-mt-12 z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
-    >
-      {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute top-0 right-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-b from-[#B600A8]/20 via-[#7621B0]/10 to-transparent blur-[140px]" />
-      
-      {/* Floating 3D sphere decoration */}
-      <div className="absolute top-12 right-12 hidden lg:block pointer-events-none">
-        <GeometricShape variant="sphere" className="h-28 w-28" />
-      </div>
+    <section id="expertise" className="relative py-28 px-6 bg-[#050507]">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
+              <span>// Capabilities</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-sans font-bold tracking-tight text-white">
+              Technical Expertise
+            </h2>
+          </div>
+          <p className="max-w-md text-sm text-zinc-400 font-normal leading-relaxed">
+            Delivering the complete engineering lifecycle from mathematical modeling to deployed enterprise user interfaces.
+          </p>
+        </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Section Heading */}
-        <h2
-          className="hero-heading mb-16 sm:mb-20 md:mb-28 text-center font-kanit font-black uppercase leading-none tracking-tight select-none"
-          style={{ fontSize: "clamp(3rem, 12vw, 160px)" }}
-        >
-          Expertise
-        </h2>
-
-        {/* Expertise List Items */}
-        <div className="divide-y divide-white/[0.12]">
-          {EXPERTISE_DATA.map((item, idx) => {
-            const isHovered = hoveredIndex === idx;
-
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+          {CAPABILITIES.map((item, idx) => {
+            const Icon = item.icon;
             return (
               <div
-                key={item.num}
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className="group relative cursor-target py-10 sm:py-12 md:py-14 transition-all duration-300"
+                key={idx}
+                className={`bento-card p-6 sm:p-8 flex flex-col justify-between group ${item.span}`}
               >
-                {/* Subtle highlight backplate on hover */}
-                <div
-                  className={`absolute inset-0 -mx-4 sm:-mx-8 rounded-2xl bg-white/[0.02] transition-opacity duration-300 pointer-events-none ${
-                    isHovered ? 'opacity-100' : 'opacity-0'
-                  }`}
-                />
-
-                <div className="relative flex flex-col md:flex-row md:items-start gap-6 sm:gap-10 md:gap-14">
-                  {/* Huge Number */}
-                  <span
-                    className="hero-heading font-kanit font-black leading-none select-none transition-transform duration-300 group-hover:scale-105"
-                    style={{ fontSize: "clamp(3rem, 9vw, 130px)" }}
-                  >
-                    {item.num}
-                  </span>
-
-                  {/* Body Content */}
-                  <div className="flex-1 flex flex-col justify-center gap-3">
-                    <div className="flex items-center justify-between">
-                      <h3
-                        className="font-kanit font-bold uppercase text-[#D7E2EA] group-hover:text-white transition-colors duration-200"
-                        style={{ fontSize: "clamp(1.4rem, 2.5vw, 2.2rem)" }}
-                      >
-                        {item.name}
-                      </h3>
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 font-mono text-xs uppercase text-[#00F0FF]">
-                        <span>Domain Specs</span>
-                        <ArrowUpRight className="h-4 w-4" />
-                      </div>
+                <div>
+                  {/* Top Bar with Number & Icon */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08] text-zinc-300 group-hover:text-cyan-400 group-hover:border-cyan-500/30 transition-all duration-300">
+                      <Icon className="h-5 w-5" />
                     </div>
-
-                    <p className="max-w-3xl font-kanit font-light text-[#D7E2EA]/80 leading-relaxed text-sm sm:text-base md:text-lg">
-                      {item.description}
-                    </p>
-
-                    {/* Tech Chips */}
-                    <div className="flex flex-wrap items-center gap-2 pt-2">
-                      {item.chips.map((chip, cIdx) => (
-                        <span
-                          key={cIdx}
-                          className="px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wider bg-white/[0.05] text-[#D7E2EA]/90 border border-white/[0.08] group-hover:border-[#B600A8]/40 transition-colors"
-                        >
-                          {chip}
-                        </span>
-                      ))}
-                    </div>
+                    <span className="font-mono text-xs text-zinc-600 group-hover:text-zinc-400 transition-colors">
+                      {item.num}
+                    </span>
                   </div>
+
+                  {/* Title & Tagline */}
+                  <span className="font-mono text-[11px] text-cyan-400 uppercase tracking-wider block mb-1">
+                    {item.tagline}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-sans font-bold text-white mb-3 group-hover:text-zinc-100 transition-colors">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-zinc-400 leading-relaxed font-normal mb-6">
+                    {item.description}
+                  </p>
+                </div>
+
+                {/* Tech chips */}
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/[0.06]">
+                  {item.techs.map((t, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/[0.03] text-zinc-300 border border-white/[0.06]"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
             );

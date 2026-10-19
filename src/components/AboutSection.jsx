@@ -1,101 +1,88 @@
 import React from 'react';
-import { GeometricShape } from './GeometricDecorations';
-import { Database, Cpu, Layout, Award, MapPin, Sparkles } from 'lucide-react';
-
-const STATS = [
-  { value: 'Master', label: 'Data Science & AI', sub: 'Advanced Engineering' },
-  { value: '04+', label: 'Flagship Projects', sub: 'Production AI & Web' },
-  { value: '10K+', label: 'Data Points Processed', sub: 'NLP & Satellite Feeds' },
-  { value: 'Full-Stack', label: 'End-to-End Delivery', sub: 'From Model to Cloud UI' },
-];
+import { GraduationCap, Award, MapPin, Terminal, CheckCircle2 } from 'lucide-react';
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-28 md:py-36 px-6 md:px-12 bg-[#0d0f12] overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute top-1/2 left-0 -translate-y-1/2 h-[450px] w-[450px] rounded-full bg-[#7621B0]/15 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-[#B600A8]/10 blur-[130px]" />
-
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
-        {/* Floating 3D Diamond / Holographic Gem */}
-        <div className="mb-6 flex justify-center">
-          <GeometricShape
-            variant="diamond"
-            className="h-[95px] w-[95px] sm:h-[125px] sm:w-[125px] md:h-[160px] md:w-[160px]"
-            float="animate-float-slow"
-          />
-        </div>
-
-        {/* Section Heading */}
-        <h2
-          className="hero-heading text-center font-kanit font-black uppercase leading-none tracking-tight select-none mb-10"
-          style={{ fontSize: "clamp(3rem, 11vw, 150px)" }}
-        >
-          About Me
-        </h2>
-
-        {/* Bio Paragraph */}
-        <p className="max-w-[700px] text-center font-kanit font-normal leading-relaxed text-[#D7E2EA] text-base sm:text-lg md:text-xl md:leading-loose mb-14 text-white/90">
-          With a <span className="text-[#00F0FF] font-semibold">Master in Data Science & AI</span> and a degree in{' '}
-          <span className="text-[#B600A8] font-semibold">Full Stack Development</span>, I build intelligent products
-          end to end — from high-throughput data pipelines and custom machine learning models to the polished web apps that
-          ship them to real users.
-        </p>
-
-        {/* Key Competence Pillars */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-5xl mb-16">
-          <div className="glow-card p-6 flex flex-col items-center text-center group cursor-target">
-            <div className="h-12 w-12 rounded-2xl bg-[#7621B0]/20 border border-[#7621B0]/40 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Cpu className="h-6 w-6 text-[#c084fc]" />
+    <section id="about" className="relative py-28 px-6 bg-[#050507] border-t border-white/[0.06]">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-12">
+          {/* Left Column: Heading & Philosophy */}
+          <div className="md:w-5/12">
+            <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
+              <span>// Background</span>
             </div>
-            <h3 className="font-kanit font-bold uppercase tracking-wider text-white text-lg mb-2">
-              Artificial Intelligence
-            </h3>
-            <p className="text-xs text-[#D7E2EA]/75 leading-relaxed font-light">
-              Generative AI, RAG architectures with vector embeddings, LLM orchestration via LangChain, and fine-tuning with LoRA/PEFT.
+            <h2 className="text-3xl sm:text-4xl font-sans font-bold tracking-tight text-white mb-6">
+              Engineering with Pragmatism & Rigor.
+            </h2>
+            <p className="text-sm text-zinc-400 leading-relaxed font-normal mb-6">
+              I believe modern AI systems deliver real business value only when the underlying data pipelines,
+              evaluation benchmarks, and web delivery architectures are built with unyielding engineering discipline.
             </p>
+            <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+              <MapPin className="h-4 w-4 text-cyan-400" />
+              <span>Based in Casablanca, Morocco · Operating Globally</span>
+            </div>
           </div>
 
-          <div className="glow-card p-6 flex flex-col items-center text-center group cursor-target">
-            <div className="h-12 w-12 rounded-2xl bg-[#B600A8]/20 border border-[#B600A8]/40 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Database className="h-6 w-6 text-[#f472b6]" />
+          {/* Right Column: Credentials & Pillars */}
+          <div className="md:w-7/12 flex flex-col gap-4">
+            <div className="bento-card p-6 border border-white/[0.08]">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08] text-cyan-400 shrink-0">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <div>
+                  <span className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider block mb-0.5">
+                    Academic Foundation
+                  </span>
+                  <h3 className="text-base font-semibold text-white mb-1">
+                    Master's Degree in Data Science & Artificial Intelligence
+                  </h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    Rigorous specialization in statistical machine learning, deep neural architectures, computer vision, and distributed data systems.
+                  </p>
+                </div>
+              </div>
             </div>
-            <h3 className="font-kanit font-bold uppercase tracking-wider text-white text-lg mb-2">
-              Data Engineering
-            </h3>
-            <p className="text-xs text-[#D7E2EA]/75 leading-relaxed font-light">
-              ETL/ELT data pipelines, warehousing with SQL Server, MongoDB & MySQL, and executive Power BI dashboards with DAX modeling.
-            </p>
-          </div>
 
-          <div className="glow-card p-6 flex flex-col items-center text-center group cursor-target">
-            <div className="h-12 w-12 rounded-2xl bg-[#00F0FF]/20 border border-[#00F0FF]/40 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <Layout className="h-6 w-6 text-[#67e8f9]" />
+            <div className="bento-card p-6 border border-white/[0.08]">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08] text-emerald-400 shrink-0">
+                  <Terminal className="h-5 w-5" />
+                </div>
+                <div>
+                  <span className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider block mb-0.5">
+                    Engineering Dual-Core
+                  </span>
+                  <h3 className="text-base font-semibold text-white mb-1">
+                    Degree in Full-Stack Software Engineering
+                  </h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    End-to-end web and mobile system development — mastering asynchronous architectures, relational & NoSQL databases, and reactive interfaces.
+                  </p>
+                </div>
+              </div>
             </div>
-            <h3 className="font-kanit font-bold uppercase tracking-wider text-white text-lg mb-2">
-              Full Stack Products
-            </h3>
-            <p className="text-xs text-[#D7E2EA]/75 leading-relaxed font-light">
-              Modern responsive web applications in React & Node.js, enterprise REST APIs in .NET, and native cross-platform mobile with Flutter.
-            </p>
-          </div>
-        </div>
 
-        {/* Highlight Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl pt-10 border-t border-white/[0.08]">
-          {STATS.map((s, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center">
-              <span className="font-kanit font-black text-2xl sm:text-3xl md:text-4xl text-white tracking-tight hero-heading-bright">
-                {s.value}
-              </span>
-              <span className="font-mono text-xs uppercase tracking-wider text-[#00F0FF] mt-1 font-semibold">
-                {s.label}
-              </span>
-              <span className="text-[11px] text-[#D7E2EA]/50 font-light mt-0.5">
-                {s.sub}
-              </span>
+            <div className="bento-card p-6 border border-white/[0.08]">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.08] text-zinc-300 shrink-0">
+                  <Award className="h-5 w-5" />
+                </div>
+                <div>
+                  <span className="font-mono text-[11px] text-zinc-500 uppercase tracking-wider block mb-0.5">
+                    Execution Philosophy
+                  </span>
+                  <h3 className="text-base font-semibold text-white mb-1">
+                    Direct Code to Production Mentality
+                  </h3>
+                  <p className="text-xs text-zinc-400 leading-relaxed">
+                    Zero disconnect between theoretical models and real users. Every pipeline is tested, monitored, containerized with Docker, and shipped.
+                  </p>
+                </div>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

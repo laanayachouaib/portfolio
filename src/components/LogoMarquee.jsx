@@ -5,7 +5,7 @@ const TECH_STACK = [
   { name: 'PyTorch', path: '/pytorch/pytorch-original.svg' },
   { name: 'TensorFlow', path: '/tensorflow/tensorflow-original.svg' },
   { name: 'Scikit-Learn', path: '/scikitlearn/scikitlearn-original.svg' },
-  { name: 'LangChain / RAG', path: '/jupyter/jupyter-original.svg' },
+  { name: 'LangChain & RAG', path: '/jupyter/jupyter-original.svg' },
   { name: 'React', path: '/react/react-original.svg' },
   { name: 'Node.js', path: '/nodejs/nodejs-original.svg' },
   { name: 'TypeScript', path: '/typescript/typescript-original.svg' },
@@ -23,25 +23,25 @@ export default function LogoMarquee() {
   const duplicated = [...TECH_STACK, ...TECH_STACK];
 
   return (
-    <div className="relative w-full py-8 overflow-hidden select-none border-y border-white/[0.06] bg-black/40 backdrop-blur-md">
-      {/* Edge gradient masks */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-10 bg-gradient-to-r from-[#0a0b0d] via-[#0a0b0d]/70 to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-10 bg-gradient-to-l from-[#0a0b0d] via-[#0a0b0d]/70 to-transparent" />
+    <div className="relative w-full py-8 overflow-hidden select-none border-y border-white/[0.06] bg-[#050507]">
+      {/* Edge gradient fade masks */}
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-28 sm:w-48 z-10 bg-gradient-to-r from-[#050507] via-[#050507]/80 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-28 sm:w-48 z-10 bg-gradient-to-l from-[#050507] via-[#050507]/80 to-transparent" />
 
       <div className="logoloop">
         <div className="logoloop__track flex items-center gap-10 sm:gap-14">
           {duplicated.map((tech, idx) => (
             <div
               key={`${tech.name}-${idx}`}
-              className="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-[#B600A8]/40 hover:bg-[#B600A8]/10 transition-all duration-300 cursor-pointer"
+              className="group flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-transparent hover:border-white/10 hover:bg-white/[0.03] transition-all duration-200 cursor-default"
             >
               <img
                 src={tech.path}
                 alt={tech.name}
-                className="h-6 w-6 sm:h-7 sm:w-7 object-contain filter drop-shadow group-hover:scale-115 transition-transform duration-300"
+                className="h-5 w-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-200"
                 loading="lazy"
               />
-              <span className="font-mono text-xs sm:text-sm font-semibold tracking-wider text-[#D7E2EA]/75 group-hover:text-white transition-colors duration-200">
+              <span className="font-mono text-xs text-zinc-400 group-hover:text-zinc-200 transition-colors">
                 {tech.name}
               </span>
             </div>

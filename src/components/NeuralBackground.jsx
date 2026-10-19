@@ -8,7 +8,6 @@ export default function NeuralBackground({ className = "pointer-events-none abso
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Renderer setup
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
@@ -18,38 +17,36 @@ export default function NeuralBackground({ className = "pointer-events-none abso
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 240;
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 220;
 
     const group = new THREE.Group();
     scene.add(group);
 
-    // Particle nodes configuration
-    const particleCount = 85;
-    const maxDistance = 75;
-    const pulseCount = 18;
-    const bound = 160;
+    // Subtle refined particles
+    const particleCount = 75;
+    const maxDistance = 65;
+    const bound = 150;
 
     const particles = [];
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const purpleColor = new THREE.Color('#7621B0');
-    const magentaColor = new THREE.Color('#B600A8');
-    const cyanColor = new THREE.Color('#00F0FF');
-    const whiteColor = new THREE.Color('#D7E2EA');
+    const cyanColor = new THREE.Color('#38BDF8');
+    const emeraldColor = new THREE.Color('#34D399');
+    const whiteColor = new THREE.Color('#F1F5F9');
 
     for (let i = 0; i < particleCount; i++) {
       const p = {
         pos: new THREE.Vector3(
-          (Math.random() - 0.5) * bound * 2.2,
+          (Math.random() - 0.5) * bound * 2.4,
           (Math.random() - 0.5) * bound * 1.5,
           (Math.random() - 0.5) * bound * 1.2
         ),
         vel: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.28,
-          (Math.random() - 0.5) * 0.28,
-          (Math.random() - 0.5) * 0.28
+          (Math.random() - 0.5) * 0.16,
+          (Math.random() - 0.5) * 0.16,
+          (Math.random() - 0.5) * 0.16
         )
       };
       particles.push(p);
@@ -58,31 +55,30 @@ export default function NeuralBackground({ className = "pointer-events-none abso
       positions[i * 3 + 1] = p.pos.y;
       positions[i * 3 + 2] = p.pos.z;
 
-      const mixed = purpleColor.clone().lerp(magentaColor, Math.random());
-      colors[i * 3] = mixed.r;
-      colors[i * 3 + 1] = mixed.g;
-      colors[i * 3 + 2] = mixed.b;
+      const c = cyanColor.clone().lerp(whiteColor, Math.random() * 0.7);
+      colors[i * 3] = c.r;
+      colors[i * 3 + 1] = c.g;
+      colors[i * 3 + 2] = c.b;
     }
 
-    // Points mesh
     const pointsGeometry = new THREE.BufferGeometry();
     pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     pointsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const pointsMaterial = new THREE.PointsMaterial({
-      size: 3.5,
+      size: 2.8,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.6,
       blending: THREE.AdditiveBlending
     });
     const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
     group.add(pointsMesh);
 
-    // Lines mesh
-    const maxLineSegments = particleCount * particleCount;
-    const linePositions = new Float32Array(maxLineSegments * 6);
-    const lineColors = new Float32Array(maxLineSegments * 6);
+    // Thin elegant connecting lines
+    const maxLines = particleCount * particleCount;
+    const linePositions = new Float32Array(maxLines * 6);
+    const lineColors = new Float32Array(maxLines * 6);
 
     const linesGeometry = new THREE.BufferGeometry();
     linesGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3).setUsage(THREE.DynamicDrawUsage));
@@ -92,20 +88,16 @@ export default function NeuralBackground({ className = "pointer-events-none abso
       vertexColors: true,
       transparent: true,
       blending: THREE.AdditiveBlending,
-      opacity: 0.6
+      opacity: 0.25
     });
     const linesMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
     group.add(linesMesh);
 
-    // Dynamic signal pulses traveling across connections
+    // Subtle pulses
+    const pulseCount = 12;
     const pulses = [];
     for (let i = 0; i < pulseCount; i++) {
-      pulses.push({
-        a: 0,
-        b: 1,
-        t: Math.random(),
-        speed: 0.008 + Math.random() * 0.015
-      });
+      pulses.push({ a: 0, b: 1, t: Math.random(), speed: 0.006 + Math.random() * 0.009 });
     }
 
     const pulsePositions = new Float32Array(pulseCount * 3);
@@ -113,28 +105,26 @@ export default function NeuralBackground({ className = "pointer-events-none abso
     pulseGeometry.setAttribute('position', new THREE.BufferAttribute(pulsePositions, 3));
 
     const pulseMaterial = new THREE.PointsMaterial({
-      size: 5.5,
-      color: cyanColor,
+      size: 4,
+      color: emeraldColor,
       transparent: true,
-      opacity: 0.95,
+      opacity: 0.85,
       blending: THREE.AdditiveBlending
     });
     const pulseMesh = new THREE.Points(pulseGeometry, pulseMaterial);
     group.add(pulseMesh);
 
-    // Mouse interaction & parallax
     let mouseX = 0;
     let mouseY = 0;
     let targetMouseX = 0;
     let targetMouseY = 0;
 
     const handleMouseMove = (e) => {
-      targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-      targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      targetMouseX = (e.clientX / window.innerWidth - 0.5) * 1.5;
+      targetMouseY = (e.clientY / window.innerHeight - 0.5) * 1.5;
     };
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-    // Handle Resize
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -145,7 +135,6 @@ export default function NeuralBackground({ className = "pointer-events-none abso
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Animation Loop
     let animationFrameId;
     const startTime = performance.now();
 
@@ -153,22 +142,18 @@ export default function NeuralBackground({ className = "pointer-events-none abso
       animationFrameId = requestAnimationFrame(animate);
       const time = (performance.now() - startTime) * 0.001;
 
-      // Smooth mouse lerp
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
+      mouseX += (targetMouseX - mouseX) * 0.04;
+      mouseY += (targetMouseY - mouseY) * 0.04;
 
-      // Group rotation
-      group.rotation.y = time * 0.03 + mouseX * 0.15;
-      group.rotation.x = mouseY * 0.1;
+      group.rotation.y = time * 0.02 + mouseX * 0.1;
+      group.rotation.x = mouseY * 0.08;
 
-      // Update particle positions
       const posArray = pointsGeometry.attributes.position.array;
       for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
         p.pos.add(p.vel);
 
-        // Soft bounce boundaries
-        if (Math.abs(p.pos.x) > bound * 1.1) p.vel.x *= -1;
+        if (Math.abs(p.pos.x) > bound * 1.2) p.vel.x *= -1;
         if (Math.abs(p.pos.y) > bound * 0.8) p.vel.y *= -1;
         if (Math.abs(p.pos.z) > bound * 0.7) p.vel.z *= -1;
 
@@ -178,8 +163,7 @@ export default function NeuralBackground({ className = "pointer-events-none abso
       }
       pointsGeometry.attributes.position.needsUpdate = true;
 
-      // Connect nearby particles
-      let lineVertexCount = 0;
+      let lineCount = 0;
       const activeConnections = [];
 
       for (let i = 0; i < particleCount; i++) {
@@ -189,7 +173,7 @@ export default function NeuralBackground({ className = "pointer-events-none abso
           const dist = pi.distanceTo(pj);
 
           if (dist < maxDistance) {
-            const idx = lineVertexCount * 6;
+            const idx = lineCount * 6;
             linePositions[idx] = pi.x;
             linePositions[idx + 1] = pi.y;
             linePositions[idx + 2] = pi.z;
@@ -197,10 +181,8 @@ export default function NeuralBackground({ className = "pointer-events-none abso
             linePositions[idx + 4] = pj.y;
             linePositions[idx + 5] = pj.z;
 
-            // Gradient line color based on distance and height
-            const alpha = 1 - dist / maxDistance;
-            const c = purpleColor.clone().lerp(magentaColor, (pi.y + bound) / (bound * 2));
-            c.multiplyScalar(alpha);
+            const alpha = (1 - dist / maxDistance) * 0.35;
+            const c = cyanColor.clone().multiplyScalar(alpha);
 
             lineColors[idx] = c.r;
             lineColors[idx + 1] = c.g;
@@ -210,16 +192,15 @@ export default function NeuralBackground({ className = "pointer-events-none abso
             lineColors[idx + 5] = c.b;
 
             activeConnections.push([i, j]);
-            lineVertexCount++;
+            lineCount++;
           }
         }
       }
 
-      linesGeometry.setDrawRange(0, lineVertexCount * 2);
+      linesGeometry.setDrawRange(0, lineCount * 2);
       linesGeometry.attributes.position.needsUpdate = true;
       linesGeometry.attributes.color.needsUpdate = true;
 
-      // Update signal pulses along connections
       if (activeConnections.length > 0) {
         const pulsePos = pulseGeometry.attributes.position.array;
         for (let i = 0; i < pulseCount; i++) {
@@ -242,9 +223,7 @@ export default function NeuralBackground({ className = "pointer-events-none abso
         pulseGeometry.attributes.position.needsUpdate = true;
       }
 
-      // Scroll fade out
-      const scrollY = window.scrollY;
-      const fade = Math.max(0, 1 - scrollY / (window.innerHeight * 0.95));
+      const fade = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.9));
       canvas.style.opacity = String(fade);
 
       if (fade > 0.01) {
