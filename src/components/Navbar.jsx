@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Download, FileText } from 'lucide-react';
 
 const NAV_LINKS = [
-  { label: 'Overview', href: '#hero' },
-  { label: 'Capabilities', href: '#expertise' },
-  { label: 'Selected Works', href: '#projects' },
-  { label: 'Background', href: '#about' },
+  { label: 'Accueil', href: '#hero' },
+  { label: 'Compétences', href: '#expertise' },
+  { label: 'Projets', href: '#projects' },
+  { label: 'Parcours', href: '#about' },
   { label: 'Contact', href: '#contact' }
 ];
 
@@ -25,7 +25,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'py-3.5 bg-[#050507]/80 backdrop-blur-xl border-b border-white/[0.08]'
+          ? 'py-3.5 bg-[#050507]/85 backdrop-blur-xl border-b border-white/[0.08]'
           : 'py-6 bg-transparent'
       }`}
     >
@@ -35,14 +35,14 @@ export default function Navbar() {
           href="#"
           className="group flex items-center gap-2.5 cursor-target text-white font-sans font-bold tracking-tight text-base"
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-md bg-white text-black font-mono font-bold text-xs">
-            MF
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-emerald-400 text-black font-mono font-extrabold text-xs shadow-sm">
+            CL
           </span>
           <span className="text-zinc-200 group-hover:text-white transition-colors">
-            Mohammed Fakir
+            Chouaib LAANAYA
           </span>
           <span className="hidden sm:inline-block text-xs font-mono text-zinc-500">
-            / AI Systems
+            / Élève Ingénieur
           </span>
         </a>
 
@@ -59,21 +59,30 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right Status & Contact Action */}
+        {/* Right Status & Actions */}
         <div className="hidden sm:flex items-center gap-3">
           <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-mono">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span>
             </span>
-            <span>Available</span>
+            <span>En recherche de stage</span>
           </div>
+
+          <a
+            href="/CV_Laanaya_Chouaib.pdf"
+            download="CV_Laanaya_Chouaib.pdf"
+            className="cursor-target flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium bg-white/[0.06] hover:bg-white/[0.12] text-zinc-200 border border-white/10 transition-all duration-200"
+          >
+            <Download className="h-3.5 w-3.5 text-cyan-400" />
+            <span>CV</span>
+          </a>
 
           <a
             href="#contact"
             className="cursor-target flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-medium bg-white text-black hover:bg-zinc-200 transition-all duration-200 shadow-sm"
           >
-            <span>Let's talk</span>
+            <span>Me contacter</span>
             <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>
@@ -100,13 +109,22 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
+          <div className="pt-4 border-t border-white/10 flex flex-col gap-2.5">
+            <a
+              href="/CV_Laanaya_Chouaib.pdf"
+              download="CV_Laanaya_Chouaib.pdf"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-medium bg-white/[0.06] text-white border border-white/10"
+            >
+              <Download className="h-4 w-4 text-cyan-400" />
+              <span>Télécharger mon CV (PDF)</span>
+            </a>
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}
               className="text-center rounded-xl py-2.5 text-xs font-semibold bg-white text-black"
             >
-              Get in touch
+              Me contacter
             </a>
           </div>
         </div>

@@ -5,82 +5,80 @@ import { GithubIcon } from './SocialIcons';
 const PROJECTS = [
   {
     num: "01",
-    name: "AI Legal Assistant",
-    category: "Generative AI · RAG Pipeline",
-    href: "https://github.com/Symooomzip/AI-Legal-Assistant-Moroccan-Law---RAG-based-System",
+    name: "Dashboard de Performance Industrielle",
+    category: "Système Industriel Temps Réel · LEONI Wiring Systems",
+    href: "https://github.com/laanayachouaib",
     specs: [
-      { label: "TASK", value: "RAG Retrieval Pipeline" },
-      { label: "DATA", value: "Moroccan Legal Corpus (FR / AR)" }
+      { label: "ENTREPRISE", value: "LEONI Wiring Systems (Berrechid)" },
+      { label: "MÉTHODOLOGIE", value: "Cycle en V (5 profils métiers)" }
     ],
-    chips: ["Python", "LangChain", "ChromaDB", "FastAPI", "LLM"],
-    metric: { display: "3×", label: "Cited Sources per Answer", badge: "Verifiable Grounding" },
-    instrumentTag: "Live Console · Arabic RTL & French",
+    chips: ["React 19", "TypeScript", "Node.js", "Express", "PostgreSQL", "Socket.IO", "Zustand", "Recharts"],
+    metric: { display: "5 Profils", label: "Modules Métiers Opérationnels", badge: "Temps Réel WebSocket" },
+    instrumentTag: "Console de Supervision Usine LEONI",
     screenshots: [
-      { src: "/legal/02-fr-sources.webp", alt: "Legal assistant — French answer with cited legal sources" },
-      { src: "/legal/04-arabe-sources.webp", alt: "Legal assistant — Arabic RTL answer with article citations" },
-      { src: "/legal/03-arabe.webp", alt: "Legal assistant — Arabic consultation interface" },
-      { src: "/legal/01-accueil.webp", alt: "Legal assistant — home screen & code search" }
+      { src: "/leoni/image19.png", alt: "Tableau de bord principal — KPIs industriels et calcul du TRS" },
+      { src: "/leoni/image30.png", alt: "Analyse des arrêts machines — Diagramme de Pareto" },
+      { src: "/leoni/image29.png", alt: "Heatmaps d'activité de production et suivi des opérateurs" },
+      { src: "/leoni/image32.png", alt: "Gestion des stocks de câblage et alertes temps réel" }
     ],
-    description: "Production Retrieval-Augmented Generation (RAG) assistant indexing Morocco's commercial and civil legal codes. Delivers verifiable answers with legal citations in both French and Arabic, utilizing semantic embeddings in ChromaDB and LangChain orchestration."
+    description: "Conception et développement complet d'un tableau de bord industriel en démarche en V. Intègre la visualisation des KPIs en temps réel via Socket.IO, l'analyse des pannes par diagramme de Pareto, le suivi de la production, la paie des opérateurs, les stocks de câblage et l'exportation de rapports Excel."
   },
   {
     num: "02",
-    name: "Market Sentiment AI",
-    category: "Big Data · NLP Sentiment Analytics",
-    href: "https://github.com/Symooomzip/big-data-bi-project",
+    name: "Plateforme de Gestion Hôtelière",
+    category: "Application Web Full-Stack · GIGA MANAGER",
+    href: "https://github.com/laanayachouaib",
     specs: [
-      { label: "TASK", value: "Multi-Source Sentiment Scoring" },
-      { label: "DATA", value: "10K+ Scraped Financial & News Feeds" }
+      { label: "ENTREPRISE", value: "GIGA MANAGER (Béni Mellal)" },
+      { label: "ARCHITECTURE", value: "MCD/MLD Merise · UML · MVC" }
     ],
-    chips: ["Python", "MongoDB", "NLP", "Power BI", "Scraping"],
-    metric: { display: "10K+", label: "Articles Scraped & Scored", badge: "Automated Pipeline" },
-    instrumentTag: "Executive Power BI Dashboard",
+    chips: ["PHP", "MySQL", "JavaScript", "Bootstrap", "HTML5/CSS3", "JWT", "phpMyAdmin"],
+    metric: { display: "100%", label: "Digitalisation des Réservations", badge: "Planning Interactif" },
+    instrumentTag: "Console de Gestion Hôtelière & Facturation",
     screenshots: [
-      { src: "/Sentiement/page4.png", alt: "Power BI dashboard — news sentiment distribution and source analysis" },
-      { src: "/Sentiement/page3.png", alt: "Power BI dashboard — sentiment comparison across Twitter, news, and Reddit" },
-      { src: "/Sentiement/page 2.png", alt: "Power BI dashboard — financial market trends, returns, and volatility" },
-      { src: "/Sentiement/page1.png", alt: "Power BI dashboard — economic indicators by country and period" }
+      { src: "/hotel/hotel_screen_6.png", alt: "Planning dynamique des réservations et calendrier des chambres" },
+      { src: "/hotel/hotel_screen_13.png", alt: "Interface d'enregistrement des clients (check-in / check-out)" },
+      { src: "/hotel/hotel_screen_5.png", alt: "Catalogue des chambres et gestion des tarifs" },
+      { src: "/hotel/hotel_screen_10.png", alt: "Tableau de bord du taux d'occupation et des revenus mensuels" }
     ],
-    description: "Automated big data pipeline ingesting real-time feeds across Twitter, Reddit, and global financial outlets. Models sentiment polarity to correlate market shifts and macroeconomic indicators through dynamic Power BI executive reports."
+    description: "Solution web de gestion d'établissement hôtelier pour administrateurs et réceptionnistes. Gestion centralisée des chambres, calendrier dynamique de réservation, formalités de check-in/check-out, facturation des séjours et indicateurs de rentabilité mensuelle."
   },
   {
     num: "03",
-    name: "Oil Spill Detection",
-    category: "Computer Vision · SAR Satellite Imagery",
-    href: "https://github.com/Symooomzip/oil-spill-detection-ml",
+    name: "Système de Gestion de Stock & Logistique",
+    category: "Application Web de Gestion · AgriSani",
+    href: "https://github.com/laanayachouaib",
     specs: [
-      { label: "TASK", value: "Pixel-Level Segmentation" },
-      { label: "DATA", value: "Synthetic Aperture Radar (SAR)" }
+      { label: "ENTREPRISE", value: "AgriSani (Berrechid)" },
+      { label: "OBJECTIF", value: "Traçabilité des Flux de Stock" }
     ],
-    chips: ["PyTorch", "CNN + Transformer", "Gradio", "OpenCV"],
-    metric: { display: "0.88", label: "IoU Segmentation Score", badge: "Test Benchmark" },
-    instrumentTag: "Live OSPREY Detection Console",
+    chips: ["Web Full-Stack", "PHP", "MySQL", "JavaScript", "Responsive UI", "GanttProject"],
+    metric: { display: "0 Rupture", label: "Suivi des Niveaux de Stock", badge: "Alertes Seuil" },
+    instrumentTag: "Console de Traçabilité & Inventaire",
     screenshots: [
-      { src: "/oilspill/02-segmentation.webp", alt: "OSPREY console — oil spill segmentation mask and overlay" },
-      { src: "/oilspill/01-classification.webp", alt: "OSPREY console — classification with confidence score" }
+      { src: "/hotel/hotel_screen_1.png", alt: "Interface moderne de gestion de stock agricole" },
+      { src: "/hotel/hotel_screen_12.png", alt: "Console d'administration des mouvements de stocks" },
+      { src: "/hotel/hotel_screen_7.png", alt: "Historique et rapports des entrées et sorties" }
     ],
-    description: "Deep learning computer vision architecture tailored for maritime surveillance. Identifies and segments marine oil slicks from Synthetic Aperture Radar (SAR) imagery with a high 0.88 IoU accuracy score and real-time inference console."
+    description: "Conception et déploiement d'une application web ergonomique pour le contrôle des stocks agricoles, assurant la traçabilité intégrale des mouvements d'entrées/sorties et l'alerte proactive en cas de franchissement de stock critique."
   },
   {
     num: "04",
-    name: "CLV & Churn Analytics",
-    category: "Client System · FMCG Dislog Group",
-    accent: "#B600A8",
-    ndaPill: "NDA Protected",
+    name: "Inférence IA Locale & LLMs d'Entreprise",
+    category: "Intelligence Artificielle Locale · Ollama",
+    href: "https://github.com/laanayachouaib",
     specs: [
-      { label: "CLIENT", value: "Dislog Group (Morocco FMCG)" },
-      { label: "DWH", value: "Constellation Architecture" }
+      { label: "MOTEUR", value: "Ollama Local Runtime" },
+      { label: "CONFIDENTIALITÉ", value: "100% Inférence Souveraine Hors-Ligne" }
     ],
-    chips: ["XGBoost", "K-Means", "RFM", "Power BI", "SQL Server"],
-    metric: { display: "0.81", label: "Churn AUC-ROC", badge: "Predictive Precision" },
-    instrumentTag: "Executive DWH & Churn Console",
+    chips: ["Python", "Ollama", "LLMs", "REST API", "Docker", "Prompt Engineering"],
+    metric: { display: "0 Cloud", label: "Données Strictement Locales", badge: "Confidentialité Totale" },
+    instrumentTag: "Architecture d'Orchestration d'IA Locale",
     screenshots: [
-      { src: "/clv/01-clv-overview.webp", alt: "CLV overview and churn prediction dashboard" },
-      { src: "/clv/02-segments.webp", alt: "Customer segmentation RFM clusters" },
-      { src: "/clv/03-churn.webp", alt: "Churn risk indicators by account category" },
-      { src: "/clv/04-executive.webp", alt: "Executive revenue and churn retention summary" }
+      { src: "/leoni/image34.png", alt: "Interface d'automatisation et requêtes d'assistance intelligente" },
+      { src: "/leoni/image35.png", alt: "Flux d'analyse et intégration locale" }
     ],
-    description: "Predictive customer lifetime value (CLV) and churn prediction engine deployed for Moroccan FMCG leader Dislog Group. Couples RFM behavioral clustering with XGBoost classifiers (0.81 AUC-ROC) to power automated retention playbooks."
+    description: "Mise en œuvre d'assistants intelligents exécutant des modèles de langage de pointe en local avec Ollama. Automatisation des tâches analytiques et traitement de documents sans aucune dépendance envers des serveurs tiers ou cloud payant."
   }
 ];
 
@@ -99,14 +97,14 @@ export default function ProjectsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
-              <span>// Portfolio</span>
+              <span>// Réalisations</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-sans font-bold tracking-tight text-white">
-              Selected Works
+              Projets Concrets
             </h2>
           </div>
           <p className="max-w-md text-sm text-zinc-400 font-normal leading-relaxed">
-            Real-world systems spanning legal retrieval engines, big data NLP pipelines, and satellite computer vision.
+            Applications industrielles et systèmes de gestion développés en entreprise, avec captures d'écran authentiques et indicateurs réels.
           </p>
         </div>
 
@@ -138,23 +136,16 @@ export default function ProjectsSection() {
                   </div>
 
                   <div className="flex items-center gap-3">
-                    {project.ndaPill ? (
-                      <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400 font-mono text-xs font-medium">
-                        <Lock className="h-3 w-3" />
-                        {project.ndaPill}
-                      </span>
-                    ) : (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="cursor-target inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-xs font-mono text-zinc-300 transition-all"
-                      >
-                        <GithubIcon className="h-3.5 w-3.5" />
-                        <span>Source</span>
-                        <ExternalLink className="h-3 w-3 text-zinc-500" />
-                      </a>
-                    )}
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-target inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-xs font-mono text-zinc-300 transition-all"
+                    >
+                      <GithubIcon className="h-3.5 w-3.5" />
+                      <span>Code & Dépôt</span>
+                      <ExternalLink className="h-3 w-3 text-zinc-500" />
+                    </a>
                   </div>
                 </div>
 
@@ -179,7 +170,7 @@ export default function ProjectsSection() {
                         </span>
                         <div className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/10 font-mono text-[10px] text-zinc-400">
                           <Eye className="h-3 w-3" />
-                          <span>Expand</span>
+                          <span>Agrandir</span>
                         </div>
                       </div>
                     </div>
@@ -202,7 +193,7 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  {/* Right Column: Specs & Impact */}
+                  {/* Right Column: Specs & Description */}
                   <div className="lg:col-span-5 flex flex-col justify-between h-full gap-5">
                     <p className="text-sm text-zinc-300 font-normal leading-relaxed">
                       {project.description}
@@ -224,7 +215,7 @@ export default function ProjectsSection() {
 
                     {/* Key Metric Badge */}
                     <div className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-                      <span className="font-sans font-extrabold text-3xl sm:text-4xl text-white text-gradient-silver">
+                      <span className="font-sans font-extrabold text-2xl sm:text-3xl text-white text-gradient-silver">
                         {project.metric.display}
                       </span>
                       <div className="flex flex-col">
@@ -258,13 +249,13 @@ export default function ProjectsSection() {
         {/* GitHub link button */}
         <div className="mt-14 text-center">
           <a
-            href="https://github.com/Symooomzip"
+            href="https://github.com/laanayachouaib"
             target="_blank"
             rel="noopener noreferrer"
             className="cursor-target inline-flex items-center gap-2.5 px-6 py-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-xs font-mono font-medium text-zinc-300 transition-all duration-200"
           >
             <GithubIcon className="h-4 w-4 text-zinc-400" />
-            <span>View All Repositories on GitHub</span>
+            <span>Consulter mes projets sur GitHub (@laanayachouaib)</span>
             <ExternalLink className="h-3.5 w-3.5 text-zinc-500" />
           </a>
         </div>

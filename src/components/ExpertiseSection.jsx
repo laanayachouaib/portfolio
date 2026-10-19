@@ -1,50 +1,50 @@
 import React from 'react';
-import { Brain, Cpu, Database, Layout, BarChart3, Code2, ArrowUpRight } from 'lucide-react';
+import { Layout, Server, Activity, Database, Bot, GitBranch, ArrowUpRight } from 'lucide-react';
 
 const CAPABILITIES = [
   {
-    icon: Brain,
+    icon: Layout,
     num: "01",
-    title: "Generative AI & LLM Orchestration",
-    tagline: "Production RAG Pipelines & Embeddings",
-    description: "Architecting end-to-end Retrieval-Augmented Generation (RAG) with vector databases (ChromaDB), LangChain orchestration, and parameter-efficient fine-tuning (LoRA/PEFT).",
-    techs: ["LangChain", "ChromaDB", "LoRA / PEFT", "Hugging Face", "Vector Search"],
+    title: "Développement Front-End Moderne & Réactif",
+    tagline: "React 19 · TypeScript · Vite · Tailwind CSS",
+    description: "Conception d'interfaces web réactives, modulaires et fluides avec React 19, TypeScript, Tailwind CSS, Zustand pour le state management et Recharts pour les graphiques analytiques (Pareto, heatmaps, TRS).",
+    techs: ["React 19", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "Recharts", "Bootstrap"],
     span: "md:col-span-8"
   },
   {
-    icon: Cpu,
+    icon: Server,
     num: "02",
-    title: "Machine Learning & Vision",
-    tagline: "Predictive Models & SAR Satellite CV",
-    description: "Designing, training, and deploying high-precision computer vision (IoU 0.88 SAR segmentation) and classification models with PyTorch and Scikit-Learn.",
-    techs: ["PyTorch", "XGBoost", "Scikit-Learn", "OpenCV"],
+    title: "Architecture Back-End & APIs REST",
+    tagline: "Node.js · Express · Spring Boot · PHP",
+    description: "Développement d'APIs REST sécurisées et performantes, implémentation de l'authentification JWT, gestion fine des rôles (RBAC) et architecture logicielle selon les Design Patterns et le modèle en V.",
+    techs: ["Node.js", "Express", "Spring Boot", "Django", "PHP", "JWT & RBAC"],
+    span: "md:col-span-4"
+  },
+  {
+    icon: Activity,
+    num: "03",
+    title: "Systèmes Temps Réel & Performance Industrielle",
+    tagline: "Socket.IO · Alertes en direct · Suivi TRS",
+    description: "Spécialisation dans les tableaux de bord opérationnels et industriels : flux d'alertes instantanées par WebSockets (Socket.IO), calcul du TRS, export de rapports automatisés et suivi des opérateurs.",
+    techs: ["Socket.IO", "WebSockets", "KPIs & TRS", "Pareto", "Heatmaps", "Export Excel"],
     span: "md:col-span-4"
   },
   {
     icon: Database,
-    num: "03",
-    title: "Data Engineering & Pipelines",
-    tagline: "High-Throughput ETL & Warehousing",
-    description: "Complete extraction, cleaning, and transformation pipelines consolidating disparate business data into optimized SQL Server, MongoDB, and MySQL data warehouses.",
-    techs: ["SQL Server", "MongoDB", "MySQL", "ETL Pipelines", "Data Modeling"],
-    span: "md:col-span-4"
-  },
-  {
-    icon: Layout,
     num: "04",
-    title: "Full-Stack Web & Mobile Architecture",
-    tagline: "Modern Reactive Frontends & Scalable Backends",
-    description: "Building production-grade web applications in React & Node.js, enterprise REST APIs in .NET, plus cross-platform mobile experiences with Flutter.",
-    techs: ["React", "Node.js", ".NET Core", "REST APIs", "Flutter", "Tailwind"],
+    title: "Bases de Données & Modélisation",
+    tagline: "PostgreSQL · MySQL · Merise · UML",
+    description: "Conception rigoureuse de schémas de données relationnels (MCD/MLD Merise, diagrammes de classes et séquences UML) et optimisation des requêtes sous PostgreSQL et MySQL.",
+    techs: ["PostgreSQL", "MySQL", "UML", "Merise", "Power BI", "DAX"],
     span: "md:col-span-4"
   },
   {
-    icon: BarChart3,
+    icon: Bot,
     num: "05",
-    title: "Business Intelligence & Analytics",
-    tagline: "Executive Storytelling & DAX Modeling",
-    description: "Transforming raw behavioral data and market signals into intuitive, executive-ready Power BI dashboards driven by advanced DAX calculations.",
-    techs: ["Power BI", "DAX", "Executive KPIs", "Data Analytics"],
+    title: "Intelligence Artificielle Locale & DevOps",
+    tagline: "Ollama (LLMs) · Docker · Linux · Git",
+    description: "Exécution et intégration de modèles de langage (LLMs) en local avec Ollama pour l'automatisation et l'assistance intelligente en toute confidentialité. Conteneurisation Docker et environnement Linux (Ubuntu, AlmaLinux).",
+    techs: ["Ollama", "LLMs en local", "Docker", "Git", "Linux", "GanttProject"],
     span: "md:col-span-4"
   }
 ];
@@ -57,14 +57,14 @@ export default function ExpertiseSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
-              <span>// Capabilities</span>
+              <span>// Compétences</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-sans font-bold tracking-tight text-white">
-              Technical Expertise
+              Domaines d'Expertise
             </h2>
           </div>
           <p className="max-w-md text-sm text-zinc-400 font-normal leading-relaxed">
-            Delivering the complete engineering lifecycle from mathematical modeling to deployed enterprise user interfaces.
+            Une approche d'ingénierie rigoureuse de la spécification technique (modèle en V) au déploiement de solutions logicielles opérationnelles.
           </p>
         </div>
 

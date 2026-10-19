@@ -1,22 +1,18 @@
 import React from 'react';
 
 const TECH_STACK = [
-  { name: 'Python', path: '/python/python-original.svg' },
-  { name: 'PyTorch', path: '/pytorch/pytorch-original.svg' },
-  { name: 'TensorFlow', path: '/tensorflow/tensorflow-original.svg' },
-  { name: 'Scikit-Learn', path: '/scikitlearn/scikitlearn-original.svg' },
-  { name: 'LangChain & RAG', path: '/jupyter/jupyter-original.svg' },
-  { name: 'React', path: '/react/react-original.svg' },
-  { name: 'Node.js', path: '/nodejs/nodejs-original.svg' },
+  { name: 'React 19', path: '/react/react-original.svg' },
   { name: 'TypeScript', path: '/typescript/typescript-original.svg' },
-  { name: '.NET Core', path: '/dotnetcore/dotnetcore-original.svg' },
-  { name: 'SQL Server', path: '/microsoftsqlserver/microsoftsqlserver-plain.svg' },
-  { name: 'MongoDB', path: '/mongodb/mongodb-original.svg' },
+  { name: 'Node.js', path: '/nodejs/nodejs-original.svg' },
+  { name: 'PostgreSQL', path: '/microsoftsqlserver/microsoftsqlserver-plain.svg' },
   { name: 'MySQL', path: '/mysql/mysql-original.svg' },
+  { name: 'Python', path: '/python/python-original.svg' },
+  { name: 'Java & Spring', path: '/java/java-original.svg' },
   { name: 'Docker', path: '/docker/docker-original.svg' },
   { name: 'Git', path: '/git/git-original.svg' },
   { name: 'Flutter', path: '/flutter/flutter-original.svg' },
-  { name: 'Java', path: '/java/java-original.svg' },
+  { name: 'Ollama (LLMs)', path: '/jupyter/jupyter-original.svg' },
+  { name: 'Power BI', path: '/scikitlearn/scikitlearn-original.svg' },
 ];
 
 export default function LogoMarquee() {

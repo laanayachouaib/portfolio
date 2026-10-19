@@ -1,40 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Sparkles, Bot, Check, ArrowRight } from 'lucide-react';
-import confetti from 'canvas-confetti';
 
-const GREETING = "Hello. I'm J.A.R.V.I.S, Mohammed's portfolio intelligence assistant. Ask me about his architecture, LLM/RAG pipelines, full stack, or how to reach him.";
+const GREETING = "Bonjour ! Je suis J.A.R.V.I.S, l'assistant virtuel de Chouaib LAANAYA. Posez-moi des questions sur ses projets (LEONI, Giga Manager), son stack (React 19, Node.js, Spring Boot, Ollama) ou ses disponibilités pour un stage !";
 
 const SUGGESTIONS = [
-  "What has he built with LLMs?",
-  "Quel est son stack technique ?",
-  "Is he open to work?",
-  "How to get in touch?"
+  "Quels projets a-t-il réalisés chez LEONI ?",
+  "Quel est son stack technique principal ?",
+  "Est-il disponible pour un stage ?",
+  "Comment le contacter directement ?"
 ];
 
 const KNOWLEDGE_BASE = [
   {
-    keywords: ['llm', 'rag', 'gen ai', 'generative', 'langchain', 'moroccan law', 'legal', 'chromadb'],
-    reply: "Mohammed engineered the AI Legal Assistant for Moroccan Law — a production RAG system leveraging LangChain, ChromaDB semantic vector search, and LLMs with citations of official legal codes in both French and Arabic (RTL support). He also works with LoRA/PEFT fine-tuning and Hugging Face deployments."
+    keywords: ['leoni', 'industriel', 'trs', 'pareto', 'usine', 'performance', 'socket'],
+    reply: "Chez LEONI Wiring Systems (Berrechid), Chouaib a conçu et développé un tableau de bord complet d'optimisation de la performance industrielle (démarche en V) pour 5 profils métiers. Stack : React 19, TypeScript, Vite, Tailwind CSS, Zustand, Recharts (calcul du TRS, diagrammes de Pareto, heatmaps), API Node.js/Express, PostgreSQL et alertes en temps réel via Socket.IO."
   },
   {
-    keywords: ['stack', 'tech', 'technologies', 'skills', 'tools', 'languages', 'competence'],
-    reply: "His core stack covers the full data & product lifecycle:\n• AI / ML: Python, PyTorch, TensorFlow, Scikit-learn, LangChain, ChromaDB, Hugging Face\n• Data: SQL Server, MongoDB, MySQL, ETL pipelines, Power BI, DAX\n• Full Stack: React, Node.js, .NET Core, TypeScript, Tailwind CSS, Flutter, Docker"
+    keywords: ['stack', 'technologies', 'compétences', 'languages', 'outils', 'framework'],
+    reply: "Le stack technique de Chouaib couvre l'ensemble du cycle logiciel :\n• Front-End : React 19, TypeScript, Vite, Tailwind CSS, Zustand, Recharts, Angular, Bootstrap\n• Back-End : Node.js, Express, Java & Spring Boot, Python & Django, PHP, APIs REST, JWT & RBAC\n• Données : PostgreSQL, MySQL, modélisation Merise / UML, Power BI\n• IA & DevOps : Ollama (exécution de LLMs en local), Docker, Git, Linux (Ubuntu, AlmaLinux)"
   },
   {
-    keywords: ['open to work', 'available', 'hire', 'recrutement', 'job', 'disponible', 'stage', 'freelance'],
-    reply: "Yes, absolutely! Mohammed is actively open to Data Scientist, AI Engineer, and Full Stack Developer roles — whether full-time, contract, or remote. He bridges mathematical modeling and production web products."
+    keywords: ['stage', 'disponible', 'recrutement', 'embauche', 'job', 'alternance', 'open to work'],
+    reply: "Oui ! Chouaib LAANAYA est actuellement en cycle ingénieur informatique à l'Université Mundiapolis et recherche activement un stage pour mettre en pratique ses compétences en développement full-stack et contribuer à des projets d'envergure. Il est mobile à Casablanca et partout au Maroc."
   },
   {
-    keywords: ['contact', 'email', 'reach', 'touch', 'linkedin', 'github', 'phone', 'mail', 'joindre'],
-    reply: "You can reach Mohammed directly at mr.fakir.mohammed@gmail.com, on LinkedIn (linkedin.com/in/mohammed-fakir), or check his repositories on GitHub (github.com/Symooomzip)."
+    keywords: ['contact', 'email', 'téléphone', 'phone', 'mail', 'joindre', 'github', 'cv'],
+    reply: "Vous pouvez contacter Chouaib directement :\n• Email : laanayachouaib@gmail.com\n• Téléphone : +212 635 313 101\n• GitHub : github.com/laanayachouaib\n• Son CV PDF est également téléchargeable en un clic sur le portfolio."
   },
   {
-    keywords: ['project', 'projets', 'portfolio', 'sentiment', 'oil spill', 'clv', 'dislog'],
-    reply: "Mohammed has 4 flagship featured projects:\n1. AI Legal Assistant (Gen AI / RAG for Moroccan Law)\n2. Market Sentiment AI (Big Data NLP & Power BI dashboard with 10k+ scraped news articles)\n3. Oil Spill Detection (Computer Vision SAR Satellite segmentation with 0.88 IoU)\n4. CLV & Churn Analytics for Dislog Group (0.81 AUC-ROC predictive model & executive DWH)"
+    keywords: ['hotel', 'giga manager', 'agrisani', 'pfe', 'licence'],
+    reply: "En plus de son expérience chez LEONI, Chouaib a développé :\n1. Une plateforme de gestion hôtelière complète chez GIGA MANAGER (planning interactif des réservations, facturation, suivi des taux d'occupation sous PHP/MySQL)\n2. Une application web de gestion de stock agricole chez AgriSani\n3. Des intégrations d'IA locales sécurisées avec Ollama."
   },
   {
-    keywords: ['education', 'degree', 'master', 'formation', 'etudes', 'diplome', 'casablanca'],
-    reply: "Mohammed holds a Master's degree in Data Science & Artificial Intelligence, combined with a degree in Full Stack Web & Mobile Development. He is based in Casablanca, Morocco."
+    keywords: ['formation', 'école', 'université', 'mundiapolis', 'études', 'diplôme', 'ingénieur'],
+    reply: "Chouaib prépare actuellement son Diplôme d'Ingénieur en Informatique à l'Université Mundiapolis (2025–2027). Il est titulaire d'une Licence en Informatique Appliquée (2022–2025) de la même université, ainsi que de la certification AWS Academy Cloud Foundations (2020)."
   }
 ];
 
@@ -68,7 +67,7 @@ export default function JarvisAssistant() {
 
       let replyText = matched
         ? matched.reply
-        : `Mohammed is a Senior AI Systems Engineer and Full Stack Architect. Ask about his specific projects (Legal Assistant, Market Sentiment, Oil Spill), his stack, or reach him at mr.fakir.mohammed@gmail.com!`;
+        : `Chouaib LAANAYA est élève ingénieur informatique à l'Université Mundiapolis, spécialisé en développement Full-Stack (React 19, TypeScript, Node.js, Spring Boot) et intégration IA (Ollama). N'hésitez pas à lui envoyer un email à laanayachouaib@gmail.com ou à l'appeler au +212 635 313 101 !`;
 
       let currentLength = 0;
       const botMsgId = (Date.now() + 1).toString();
@@ -103,9 +102,9 @@ export default function JarvisAssistant() {
             <div className="flex items-center gap-2">
               <span className="flex h-2 w-2 rounded-full bg-emerald-400"></span>
               <span className="font-mono text-xs font-semibold text-white tracking-wide">
-                J.A.R.V.I.S Core
+                Assistant Virtuel · Chouaib LAANAYA
               </span>
-              <span className="text-[10px] font-mono text-zinc-500">/ v2.4</span>
+              <span className="text-[10px] font-mono text-zinc-500">/ IA</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -170,7 +169,7 @@ export default function JarvisAssistant() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Query assistant..."
+              placeholder="Poser une question..."
               className="flex-1 rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-400 border border-white/[0.06]"
             />
             <button
@@ -194,7 +193,7 @@ export default function JarvisAssistant() {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
         </span>
         <span className="font-mono text-xs font-medium tracking-wide">
-          J.A.R.V.I.S AI
+          Assistant IA · Chouaib
         </span>
       </button>
     </div>
