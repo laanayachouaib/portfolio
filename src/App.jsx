@@ -8,6 +8,7 @@ import AboutSection from './components/AboutSection';
 import ContactSection from './components/ContactSection';
 import JarvisAssistant from './components/JarvisAssistant';
 import TargetCursor from './components/TargetCursor';
+import NeuralBackground from './components/NeuralBackground';
 
 export default function App() {
   return (
@@ -15,8 +16,11 @@ export default function App() {
       {/* Minimalist Dual-Ring Cursor */}
       <TargetCursor />
 
+      {/* Global Interactive Neural Constellation Background */}
+      <NeuralBackground className="pointer-events-none fixed inset-0 z-0 h-full w-full" />
+
       {/* Global Linear Grid Pattern */}
-      <div className="pointer-events-none fixed inset-0 z-0 linear-grid opacity-40" />
+      <div className="pointer-events-none fixed inset-0 z-0 linear-grid opacity-30" />
 
       {/* Navigation Header */}
       <Navbar />

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-export default function NeuralBackground({ className = "pointer-events-none absolute inset-0 h-full w-full" }) {
+export default function NeuralBackground({ className = "pointer-events-none fixed inset-0 z-0 h-full w-full" }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -17,35 +17,36 @@ export default function NeuralBackground({ className = "pointer-events-none abso
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 220;
+    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1500);
+    camera.position.z = 240;
 
     const group = new THREE.Group();
     scene.add(group);
 
-    // Subtle refined particles
-    const particleCount = 75;
+    const particleCount = 100;
     const maxDistance = 65;
-    const bound = 150;
+    const boundX = 220;
+    const boundY = 140;
+    const boundZ = 120;
 
     const particles = [];
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
-    const cyanColor = new THREE.Color('#38BDF8');
-    const emeraldColor = new THREE.Color('#34D399');
+    const cyanColor = new THREE.Color('#00F0FF');
+    const emeraldColor = new THREE.Color('#10B981');
     const whiteColor = new THREE.Color('#F1F5F9');
 
     for (let i = 0; i < particleCount; i++) {
       const p = {
         pos: new THREE.Vector3(
-          (Math.random() - 0.5) * bound * 2.4,
-          (Math.random() - 0.5) * bound * 1.5,
-          (Math.random() - 0.5) * bound * 1.2
+          (Math.random() - 0.5) * boundX * 2,
+          (Math.random() - 0.5) * boundY * 2,
+          (Math.random() - 0.5) * boundZ * 2
         ),
         vel: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.16,
-          (Math.random() - 0.5) * 0.16,
+          (Math.random() - 0.5) * 0.2,
+          (Math.random() - 0.5) * 0.2,
           (Math.random() - 0.5) * 0.16
         )
       };
@@ -55,28 +56,28 @@ export default function NeuralBackground({ className = "pointer-events-none abso
       positions[i * 3 + 1] = p.pos.y;
       positions[i * 3 + 2] = p.pos.z;
 
-      const c = cyanColor.clone().lerp(whiteColor, Math.random() * 0.7);
+      const rnd = Math.random();
+      const c = rnd > 0.6 ? cyanColor : (rnd > 0.3 ? emeraldColor : whiteColor);
       colors[i * 3] = c.r;
       colors[i * 3 + 1] = c.g;
       colors[i * 3 + 2] = c.b;
     }
 
     const pointsGeometry = new THREE.BufferGeometry();
-    pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3).setUsage(THREE.DynamicDrawUsage));
     pointsGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const pointsMaterial = new THREE.PointsMaterial({
-      size: 2.8,
+      size: 3.2,
       vertexColors: true,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.75,
       blending: THREE.AdditiveBlending
     });
     const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
     group.add(pointsMesh);
 
-    // Thin elegant connecting lines
-    const maxLines = particleCount * particleCount;
+    const maxLines = (particleCount * 8) + 30;
     const linePositions = new Float32Array(maxLines * 6);
     const lineColors = new Float32Array(maxLines * 6);
 
@@ -88,16 +89,15 @@ export default function NeuralBackground({ className = "pointer-events-none abso
       vertexColors: true,
       transparent: true,
       blending: THREE.AdditiveBlending,
-      opacity: 0.25
+      opacity: 0.35
     });
     const linesMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
     group.add(linesMesh);
 
-    // Subtle pulses
-    const pulseCount = 12;
+    const pulseCount = 18;
     const pulses = [];
     for (let i = 0; i < pulseCount; i++) {
-      pulses.push({ a: 0, b: 1, t: Math.random(), speed: 0.006 + Math.random() * 0.009 });
+      pulses.push({ a: 0, b: 1, t: Math.random(), speed: 0.007 + Math.random() * 0.012 });
     }
 
     const pulsePositions = new Float32Array(pulseCount * 3);
@@ -105,57 +105,82 @@ export default function NeuralBackground({ className = "pointer-events-none abso
     pulseGeometry.setAttribute('position', new THREE.BufferAttribute(pulsePositions, 3));
 
     const pulseMaterial = new THREE.PointsMaterial({
-      size: 4,
-      color: emeraldColor,
+      size: 5,
+      color: cyanColor,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.9,
       blending: THREE.AdditiveBlending
     });
     const pulseMesh = new THREE.Points(pulseGeometry, pulseMaterial);
     group.add(pulseMesh);
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetMouseX = 0;
-    let targetMouseY = 0;
+    let targetRotX = 0, targetRotY = 0;
+    let curRotX = 0, curRotY = 0;
+    const mouseWorld = new THREE.Vector3(0, 0, -9999);
+    let hasMouseMoved = false;
 
     const handleMouseMove = (e) => {
-      targetMouseX = (e.clientX / window.innerWidth - 0.5) * 1.5;
-      targetMouseY = (e.clientY / window.innerHeight - 0.5) * 1.5;
+      hasMouseMoved = true;
+      const ndcX = (e.clientX / window.innerWidth) * 2 - 1;
+      const ndcY = -(e.clientY / window.innerHeight) * 2 + 1;
+      targetRotX = ndcY * 0.15;
+      targetRotY = ndcX * 0.22;
+
+      const vector = new THREE.Vector3(ndcX, ndcY, 0.5);
+      vector.unproject(camera);
+      const dir = vector.sub(camera.position).normalize();
+      const dist = -camera.position.z / dir.z;
+      mouseWorld.copy(camera.position).add(dir.multiplyScalar(dist));
     };
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      camera.aspect = width / height;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
+      renderer.setSize(w, h);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    let animationFrameId;
     const startTime = performance.now();
+    let animationFrameId;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       const time = (performance.now() - startTime) * 0.001;
 
-      mouseX += (targetMouseX - mouseX) * 0.04;
-      mouseY += (targetMouseY - mouseY) * 0.04;
+      curRotX += (targetRotX - curRotX) * 0.04;
+      curRotY += (targetRotY - curRotY) * 0.04;
 
-      group.rotation.y = time * 0.02 + mouseX * 0.1;
-      group.rotation.x = mouseY * 0.08;
+      group.rotation.y = time * 0.015 + curRotY;
+      group.rotation.x = curRotX;
+
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const scrollFrac = (window.scrollY / maxScroll) * 80;
+      group.position.y += ((scrollFrac - 40) - group.position.y) * 0.04;
 
       const posArray = pointsGeometry.attributes.position.array;
+      const mouseInteractRadius = 80;
+
       for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
         p.pos.add(p.vel);
 
-        if (Math.abs(p.pos.x) > bound * 1.2) p.vel.x *= -1;
-        if (Math.abs(p.pos.y) > bound * 0.8) p.vel.y *= -1;
-        if (Math.abs(p.pos.z) > bound * 0.7) p.vel.z *= -1;
+        if (Math.abs(p.pos.x) > boundX) p.vel.x *= -1;
+        if (Math.abs(p.pos.y) > boundY) p.vel.y *= -1;
+        if (Math.abs(p.pos.z) > boundZ) p.vel.z *= -1;
+
+        if (hasMouseMoved) {
+          const dToMouse = p.pos.distanceTo(mouseWorld);
+          if (dToMouse < mouseInteractRadius && dToMouse > 0.1) {
+            const repulse = (1 - dToMouse / mouseInteractRadius) * 1.2;
+            p.pos.x += ((p.pos.x - mouseWorld.x) / dToMouse) * repulse;
+            p.pos.y += ((p.pos.y - mouseWorld.y) / dToMouse) * repulse;
+          }
+        }
 
         posArray[i * 3] = p.pos.x;
         posArray[i * 3 + 1] = p.pos.y;
@@ -172,7 +197,7 @@ export default function NeuralBackground({ className = "pointer-events-none abso
           const pj = particles[j].pos;
           const dist = pi.distanceTo(pj);
 
-          if (dist < maxDistance) {
+          if (dist < maxDistance && lineCount < maxLines - 10) {
             const idx = lineCount * 6;
             linePositions[idx] = pi.x;
             linePositions[idx + 1] = pi.y;
@@ -181,7 +206,7 @@ export default function NeuralBackground({ className = "pointer-events-none abso
             linePositions[idx + 4] = pj.y;
             linePositions[idx + 5] = pj.z;
 
-            const alpha = (1 - dist / maxDistance) * 0.35;
+            const alpha = (1 - dist / maxDistance) * 0.38;
             const c = cyanColor.clone().multiplyScalar(alpha);
 
             lineColors[idx] = c.r;
@@ -192,6 +217,31 @@ export default function NeuralBackground({ className = "pointer-events-none abso
             lineColors[idx + 5] = c.b;
 
             activeConnections.push([i, j]);
+            lineCount++;
+          }
+        }
+
+        if (hasMouseMoved) {
+          const dToMouse = particles[i].pos.distanceTo(mouseWorld);
+          if (dToMouse < 85 && lineCount < maxLines - 1) {
+            const idx = lineCount * 6;
+            linePositions[idx] = particles[i].pos.x;
+            linePositions[idx + 1] = particles[i].pos.y;
+            linePositions[idx + 2] = particles[i].pos.z;
+            linePositions[idx + 3] = mouseWorld.x;
+            linePositions[idx + 4] = mouseWorld.y;
+            linePositions[idx + 5] = mouseWorld.z;
+
+            const alpha = (1 - dToMouse / 85) * 0.75;
+            const c = emeraldColor.clone().multiplyScalar(alpha);
+
+            lineColors[idx] = c.r;
+            lineColors[idx + 1] = c.g;
+            lineColors[idx + 2] = c.b;
+            lineColors[idx + 3] = c.r;
+            lineColors[idx + 4] = c.g;
+            lineColors[idx + 5] = c.b;
+
             lineCount++;
           }
         }
@@ -223,12 +273,7 @@ export default function NeuralBackground({ className = "pointer-events-none abso
         pulseGeometry.attributes.position.needsUpdate = true;
       }
 
-      const fade = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.9));
-      canvas.style.opacity = String(fade);
-
-      if (fade > 0.01) {
-        renderer.render(scene, camera);
-      }
+      renderer.render(scene, camera);
     };
 
     animate();

@@ -163,19 +163,22 @@ export default function JarvisAssistant() {
               e.preventDefault();
               handleSend();
             }}
-            className="flex items-center gap-2 border-t border-white/[0.08] p-2.5 bg-[#050507]"
+            className="flex items-center gap-2 border-t border-white/[0.08] p-3 bg-white/[0.02]"
           >
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Poser une question..."
-              className="flex-1 rounded-lg bg-white/[0.04] px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-400 border border-white/[0.06]"
-            />
+            <div className="relative flex-1">
+              <Bot className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-500" />
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Poser une question..."
+                className="w-full rounded-xl bg-white/[0.04] pl-9 pr-3 py-2 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:bg-white/[0.06] border border-white/[0.08] transition-all"
+              />
+            </div>
             <button
               type="submit"
               disabled={!input.trim()}
-              className="p-1.5 rounded-lg bg-white text-black hover:bg-zinc-200 disabled:opacity-30 transition-colors"
+              className="p-2 rounded-xl bg-cyan-400 text-black hover:bg-cyan-300 hover:shadow-[0_0_15px_rgba(0,240,255,0.4)] disabled:opacity-30 disabled:hover:shadow-none transition-all"
             >
               <Send className="h-3.5 w-3.5" />
             </button>

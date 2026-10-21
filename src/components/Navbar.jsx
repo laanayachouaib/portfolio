@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Download, FileText } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Download, FileText, Sun, Moon } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Accueil', href: '#hero' },
@@ -12,6 +12,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => localStorage.getItem('portfolio-theme') || 'dark');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +21,16 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    localStorage.setItem('portfolio-theme', nextTheme);
+    document.body.classList.toggle('light-mode', nextTheme === 'light');
+    if (window.onPortfolioThemeChange) {
+      window.onPortfolioThemeChange(nextTheme);
+    }
+  };
 
   return (
     <header
@@ -68,6 +79,20 @@ export default function Navbar() {
             </span>
             <span>En recherche de stage</span>
           </div>
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="cursor-target flex items-center justify-center h-8 w-8 rounded-full bg-white/[0.06] hover:bg-white/[0.14] text-zinc-200 border border-white/10 hover:border-cyan-400/50 transition-all duration-200 hover:scale-105 active:scale-95"
+            title="Basculer Mode Clair / Sombre"
+            aria-label="Basculer Mode Clair / Sombre"
+          >
+            {theme === 'light' ? (
+              <Moon className="h-4 w-4 text-indigo-400" />
+            ) : (
+              <Sun className="h-4 w-4 text-amber-400" />
+            )}
+          </button>
 
           <a
             href="/CV_Laanaya_Chouaib.pdf"
@@ -126,6 +151,25 @@ export default function Navbar() {
             >
               Me contacter
             </a>
+          </div>
+          <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+            <span className="text-xs font-mono text-zinc-400">Mode d'affichage</span>
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.06] text-xs font-medium text-zinc-200 border border-white/10 hover:border-cyan-400/40 transition-colors"
+            >
+              {theme === 'light' ? (
+                <>
+                  <Moon className="h-3.5 w-3.5 text-indigo-400" />
+                  <span>Mode Sombre</span>
+                </>
+              ) : (
+                <>
+                  <Sun className="h-3.5 w-3.5 text-amber-400" />
+                  <span>Mode Clair</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       )}

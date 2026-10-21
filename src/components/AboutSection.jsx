@@ -3,7 +3,7 @@ import { GraduationCap, Award, MapPin, Briefcase, Languages, CheckCircle2 } from
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-28 px-6 bg-[#050507] border-t border-white/[0.06]">
+    <section id="about" className="relative py-28 px-6 bg-transparent border-t border-white/[0.06]">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-12">
           {/* Left Column: Heading & Bio */}

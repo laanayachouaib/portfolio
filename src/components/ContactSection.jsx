@@ -1,13 +1,43 @@
-import React, { useState } from 'react';
-import { Mail, Phone, Copy, Check, Send, Sparkles, MapPin, ArrowUpRight, Download } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Mail, Phone, Copy, Check, Send, Sparkles, MapPin, ArrowUpRight, Download, User, Tag, MessageSquare, Cpu } from 'lucide-react';
 import { LinkedinIcon, GithubIcon } from './SocialIcons';
 import confetti from 'canvas-confetti';
+
+const AVAILABLE_TECHS = [
+  { name: 'React 19', icon: '/react/react-original.svg' },
+  { name: 'TypeScript', icon: '/typescript/typescript-original.svg' },
+  { name: 'Node.js', icon: '/nodejs/nodejs-original.svg' },
+  { name: 'Spring Boot', icon: '/java/java-original.svg' },
+  { name: 'Python', icon: '/python/python-original.svg' },
+  { name: 'PostgreSQL', icon: '/microsoftsqlserver/microsoftsqlserver-plain.svg' },
+  { name: 'MySQL', icon: '/mysql/mysql-original.svg' },
+  { name: 'Docker', icon: '/docker/docker-original.svg' },
+  { name: 'Git', icon: '/git/git-original.svg' },
+  { name: 'Ollama (LLMs)', icon: '/jupyter/jupyter-original.svg' },
+  { name: 'Flutter', icon: '/flutter/flutter-original.svg' },
+  { name: 'Power BI', icon: '/scikitlearn/scikitlearn-original.svg' },
+];
 
 export default function ContactSection() {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [selectedTechs, setSelectedTechs] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    cardRef.current.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    cardRef.current.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  };
+
+  const toggleTech = (techName) => {
+    setSelectedTechs((prev) =>
+      prev.includes(techName) ? prev.filter((t) => t !== techName) : [...prev, techName]
+    );
+  };
 
   const handleCopyEmail = (e) => {
     e.preventDefault();
@@ -28,15 +58,19 @@ export default function ContactSection() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    confetti({ particleCount: 60, spread: 80, origin: { y: 0.7 } });
+    confetti({ particleCount: 75, spread: 85, origin: { y: 0.7 } });
+    setTimeout(() => confetti({ particleCount: 45, angle: 60, spread: 55, origin: { x: 0 } }), 200);
+    setTimeout(() => confetti({ particleCount: 45, angle: 120, spread: 55, origin: { x: 1 } }), 400);
+
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 4000);
+      setSelectedTechs([]);
+    }, 4500);
   };
 
   return (
-    <section id="contact" className="relative py-28 px-6 bg-[#050507] border-t border-white/[0.06]">
+    <section id="contact" className="relative py-28 px-6 bg-transparent border-t border-white/[0.06]">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-400 mb-3">
@@ -134,91 +168,157 @@ export default function ContactSection() {
         </div>
 
         {/* Message Card */}
-        <div className="bento-card p-8 border border-white/[0.08] mb-16">
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.06]">
+        <div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          className="bento-card form-glow-card p-6 sm:p-9 border border-white/[0.08] mb-16 relative overflow-hidden"
+        >
+          <div className="flex items-center justify-between mb-8 pb-5 border-b border-white/[0.06]">
             <div>
-              <h3 className="text-base font-semibold text-white">M'envoyer un Message Direct</h3>
-              <p className="text-xs text-zinc-500 mt-0.5">Réponse rapide assurée</p>
+              <h3 className="text-base sm:text-lg font-semibold text-white flex items-center gap-2">
+                <Send className="h-4 w-4 text-cyan-400" />
+                <span>M'envoyer un Message Direct</span>
+              </h3>
+              <p className="text-xs text-zinc-400 mt-1">Réponse rapide assurée sous 24 heures</p>
             </div>
-            <div className="flex items-center gap-1.5 font-mono text-[11px] text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            <div className="flex items-center gap-2 font-mono text-[11px] text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-full border border-emerald-500/20">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>Casablanca, Maroc</span>
             </div>
           </div>
 
           {submitted ? (
-            <div className="py-10 flex flex-col items-center text-center">
-              <div className="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3">
-                <Check className="h-5 w-5" />
+            <div className="py-12 flex flex-col items-center text-center">
+              <div className="h-14 w-14 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 shadow-[0_0_25px_rgba(16,185,129,0.3)]">
+                <Check className="h-7 w-7" />
               </div>
-              <h4 className="font-sans font-semibold text-white text-base">Message Transmis avec Succès</h4>
-              <p className="text-xs text-zinc-400 mt-1 max-w-xs">
-                Merci ! Votre demande a été enregistrée. Chouaib vous répondra dans les plus brefs délais.
+              <h4 className="font-sans font-bold text-white text-lg sm:text-xl">Message Transmis avec Succès !</h4>
+              <p className="text-xs sm:text-sm text-zinc-400 mt-2 max-w-md leading-relaxed">
+                Merci ! Votre demande a été enregistrée avec succès. Chouaib LAANAYA vous répondra dans les plus brefs délais.
               </p>
+              {selectedTechs.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2 justify-center max-w-sm">
+                  {selectedTechs.map((tech) => (
+                    <span key={tech} className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
-                    Nom & Entreprise
+                <div className="form-input-wrapper flex flex-col">
+                  <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 transition-colors">
+                    <User className="form-icon h-3.5 w-3.5 text-zinc-500 transition-all" />
+                    <span>Nom & Entreprise <span className="text-cyan-400">*</span></span>
                   </label>
+                  <div className="relative">
+                    <User className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                    <input
+                      type="text"
+                      required
+                      placeholder="Votre nom ou société"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="form-input w-full rounded-xl bg-white/[0.03] border border-white/[0.08] pl-10 pr-4 py-3 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-input-wrapper flex flex-col">
+                  <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 transition-colors">
+                    <Mail className="form-icon h-3.5 w-3.5 text-zinc-500 transition-all" />
+                    <span>Adresse Email <span className="text-cyan-400">*</span></span>
+                  </label>
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                    <input
+                      type="email"
+                      required
+                      placeholder="contact@entreprise.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="form-input w-full rounded-xl bg-white/[0.03] border border-white/[0.08] pl-10 pr-4 py-3 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Technologies Badges Section with Icons */}
+              <div className="form-input-wrapper flex flex-col pt-1">
+                <div className="flex items-center justify-between mb-2.5">
+                  <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400">
+                    <Cpu className="form-icon h-3.5 w-3.5 text-cyan-400" />
+                    <span>Technologies Concernées par votre Besoin</span>
+                  </label>
+                  <span className="text-[10px] font-mono text-zinc-500 hidden sm:inline-block">Cliquez pour sélectionner</span>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-0.5">
+                  {AVAILABLE_TECHS.map((tech) => {
+                    const isSelected = selectedTechs.includes(tech.name);
+                    return (
+                      <button
+                        key={tech.name}
+                        type="button"
+                        onClick={() => toggleTech(tech.name)}
+                        className={`cursor-target group inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border font-mono text-xs transition-all duration-200 select-none ${
+                          isSelected
+                            ? 'border-cyan-400 bg-cyan-500/15 text-cyan-200 shadow-[0_0_15px_rgba(0,240,255,0.25)]'
+                            : 'border-white/[0.08] bg-white/[0.03] text-zinc-300 hover:border-cyan-500/40 hover:bg-white/[0.08]'
+                        }`}
+                      >
+                        <img src={tech.icon} alt={tech.name} className="h-4 w-4 object-contain group-hover:scale-110 transition-transform" />
+                        <span>{tech.name}</span>
+                        {isSelected && <span className="text-[11px] font-bold text-cyan-400">✓</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="form-input-wrapper flex flex-col">
+                <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 transition-colors">
+                  <Tag className="form-icon h-3.5 w-3.5 text-zinc-500 transition-all" />
+                  <span>Objet / Type d'Opportunité</span>
+                </label>
+                <div className="relative">
+                  <Tag className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
                   <input
                     type="text"
-                    required
-                    placeholder="Votre nom ou société"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/[0.08] px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:outline-none transition-colors"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
-                    Adresse Email
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="contact@entreprise.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/[0.08] px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:outline-none transition-colors"
+                    placeholder="Ex : Offre de stage / Projet Full-Stack / Mission IA Locale"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="form-input w-full rounded-xl bg-white/[0.03] border border-white/[0.08] pl-10 pr-4 py-3 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all"
                   />
                 </div>
               </div>
 
-              <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
-                  Objet / Type d'Opportunité
+              <div className="form-input-wrapper flex flex-col">
+                <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-2 transition-colors">
+                  <MessageSquare className="form-icon h-3.5 w-3.5 text-zinc-500 transition-all" />
+                  <span>Votre Message <span className="text-cyan-400">*</span></span>
                 </label>
-                <input
-                  type="text"
-                  placeholder="Ex : Offre de stage / Projet Full-Stack / Opportunité d'embauche"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full rounded-xl bg-white/[0.03] border border-white/[0.08] px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:outline-none transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 mb-1">
-                  Votre Message
-                </label>
-                <textarea
-                  rows="4"
-                  required
-                  placeholder="Présentez votre besoin, les technologies de votre équipe ou les détails du poste..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full rounded-xl bg-white/[0.03] border border-white/[0.08] px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:outline-none transition-colors resize-none"
-                />
+                <div className="relative">
+                  <MessageSquare className="pointer-events-none absolute left-3.5 top-4 h-4 w-4 text-zinc-500" />
+                  <textarea
+                    rows="4"
+                    required
+                    placeholder="Présentez votre besoin, les technologies de votre équipe ou les détails du poste..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="form-input w-full rounded-xl bg-white/[0.03] border border-white/[0.08] pl-10 pr-4 py-3 text-xs sm:text-sm text-white placeholder-zinc-600 focus:border-cyan-400 focus:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-cyan-500/20 transition-all resize-none"
+                  />
+                </div>
               </div>
 
               <button
                 type="submit"
-                className="cursor-target shimmer-btn inline-flex items-center justify-center gap-2 py-3 px-6 text-xs font-semibold uppercase tracking-wider text-black mt-2"
+                className="cursor-target shimmer-btn group relative overflow-hidden inline-flex items-center justify-center gap-2.5 py-3.5 px-7 text-xs font-semibold uppercase tracking-wider text-black mt-2 shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_35px_rgba(0,240,255,0.45)] transition-all duration-300"
               >
-                <Send className="h-3.5 w-3.5" />
+                <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 <span>Envoyer le Message</span>
               </button>
             </form>

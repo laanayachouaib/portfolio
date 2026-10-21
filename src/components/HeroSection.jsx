@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import NeuralBackground from './NeuralBackground';
 import { ArrowRight, ArrowUpRight, Download, Sparkles, Terminal, MapPin, CheckCircle2 } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
@@ -26,9 +25,6 @@ export default function HeroSection() {
     >
       {/* Ambient Top Spotlight */}
       <div className="pointer-events-none absolute inset-0 ambient-spotlight" />
-      
-      {/* Three.js Neural Constellation Background */}
-      <NeuralBackground className="pointer-events-none absolute inset-0 h-full w-full opacity-60" />
 
       {/* Grid Pattern Overlay */}
       <div className="pointer-events-none absolute inset-0 linear-grid opacity-50" />
@@ -43,11 +39,13 @@ export default function HeroSection() {
         </div>
 
         {/* Hero Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold tracking-tight leading-[1.08] mb-6 text-gradient-silver">
-          Chouaib LAANAYA
+        <h1 className="hero-title-animated text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold tracking-tight leading-[1.08] mb-6">
+          <span className="title-name-gradient">
+            Chouaib LAANAYA
+          </span>
           <br />
-          <span className="text-zinc-400 font-normal text-3xl sm:text-5xl md:text-6xl">
-            Développeur Full-Stack & Systèmes IA
+          <span className="title-subtitle-gradient text-3xl sm:text-5xl md:text-6xl mt-2 block sm:inline">
+            Ingénieur Logiciel Full-Stack & Systèmes IA
           </span>
         </h1>
 
@@ -91,23 +89,27 @@ export default function HeroSection() {
 
         {/* 3D Avatar Centerpiece with Subtle Floating Ring */}
         <div className="relative mb-12">
-          <div
-            className="relative w-[180px] sm:w-[220px] md:w-[250px] transition-transform duration-300 ease-out"
-            style={{
-              transform: `perspective(1000px) rotateX(${tilt.y * 0.6}deg) rotateY(${tilt.x * 0.6}deg)`,
-            }}
-          >
-            <div className="absolute inset-0 rounded-full bg-cyan-500/15 blur-2xl -z-10" />
+          <div className="avatar-float-wrapper">
+            <div className="avatar-backlight" />
+            <div className="avatar-tech-ring-1" />
+            <div className="avatar-tech-ring-2" />
 
-            <img
-              src="/head.png"
-              alt="Chouaib Laanaya"
-              className="relative w-full drop-shadow-[0_15px_35px_rgba(0,0,0,0.8)] filter brightness-105"
+            <div
+              className="relative w-[180px] sm:w-[220px] md:w-[250px] transition-transform duration-300 ease-out z-10"
               style={{
-                WebkitMaskImage: "radial-gradient(54% 54% at 50% 50%, black 78%, transparent 100%)",
-                maskImage: "radial-gradient(54% 54% at 50% 50%, black 78%, transparent 100%)",
+                transform: `perspective(1000px) rotateX(${tilt.y * 0.6}deg) rotateY(${tilt.x * 0.6}deg)`,
               }}
-            />
+            >
+              <img
+                src="/e889c03e-d4ff-4943-b903-46e64fb613f1.png"
+                alt="Chouaib Laanaya"
+                className="avatar-img-styled cursor-target relative w-full drop-shadow-[0_15px_35px_rgba(0,0,0,0.8)] filter brightness-105"
+                style={{
+                  WebkitMaskImage: "radial-gradient(54% 54% at 50% 50%, black 78%, transparent 100%)",
+                  maskImage: "radial-gradient(54% 54% at 50% 50%, black 78%, transparent 100%)",
+                }}
+              />
+            </div>
           </div>
         </div>
 

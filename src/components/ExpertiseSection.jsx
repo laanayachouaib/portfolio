@@ -51,7 +51,7 @@ const CAPABILITIES = [
 
 export default function ExpertiseSection() {
   return (
-    <section id="expertise" className="relative py-28 px-6 bg-[#050507]">
+    <section id="expertise" className="relative py-28 px-6 bg-transparent">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">

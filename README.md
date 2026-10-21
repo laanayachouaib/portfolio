@@ -1,128 +1,118 @@
-# Mohammed Fakir — AI Engineer & Data Scientist Portfolio
+# Chouaib LAANAYA — Portfolio Ingénieur Logiciel & Développeur Full-Stack
 
-Un portfolio professionnel haute performance, inspiré directement de [symo-portfolio.pages.dev](https://symo-portfolio.pages.dev/), doté d'animations 3D WebGL, d'effets néon cyberpunk, de typographie Kanit fluide et d'un assistant conversationnel interactif J.A.R.V.I.S.
+Portfolio professionnel haute performance développé avec des animations 3D WebGL (Three.js), un thème sombre moderne inspiré de Linear et Apple, une console interactive de démonstration de projets et un assistant conversationnel contextuel J.A.R.V.I.S.
 
 ---
 
-## ⚡ Caractéristiques Principales & Animations Pro
+## ⚡ Caractéristiques Principales & Expérience Utilisateur
 
-1. **Arrière-plan 3D Neural Constellation (Three.js & WebGL)** :
-   - Constellation dynamique de nœuds avec liaisons synaptiques calculées en temps réel.
-   - Flux d'impulsions lumineuses (signaux cyan / magenta) circulant le long des connexions.
-   - Parallaxe 3D réactif à la souris et fondu automatique lors du défilement.
+1. **Arrière-plan 3D Neural Constellation (Three.js & Canvas WebGL)** :
+   - Constellation interactive de particules connectées par des liaisons synaptiques dynamiques.
+   - Pulsions énergétiques circulant le long des arêtes et attraction/dispersion magnétique réactive à la souris.
+   - Parallaxe fluide avec estompage doux lors du défilement.
 
-2. **Hero Section Immersif** :
-   - Typographie géante fluide Kanit (`HI, I'M FAKIR`) avec reflets métalliques.
-   - Avatar 3D central (`/head.png`) avec orbe néon animé en pulsation (`orb-pulse`), masque radial et inclinaison dynamique au mouvement du curseur.
-   - Badges de disponibilité en direct (*Available for work*).
+2. **Hero Section Immersive** :
+   - Titre cinématique animé avec dégradé argenté liquide et reflets néon.
+   - Avatar 3D central (`/e889c03e-d4ff-4943-b903-46e64fb613f1.png`) avec anneaux orbitaux concentriques rotatifs et halo néon pulsant.
+   - Badges de statut en direct (*Disponible pour stage / missions*).
 
 3. **Curseur Cyberpunk Réticule Cible** :
-   - Réticule de ciblage à 4 coins animés suivant la position de la souris de façon fluide.
-   - Détection automatique et agrandissement magnétique sur les boutons, cartes et liens interactifs.
+   - Réticule de visée magnétique suivant la souris avec agrandissement automatique au survol des éléments interactifs.
 
 4. **Marquee Infini du Tech Stack** :
-   - Défilement continu fluide des logos vectoriels (Python, PyTorch, TensorFlow, Scikit-learn, LangChain, React, Node.js, TypeScript, .NET, Docker, MongoDB, etc.).
-   - Effet de survol avec zoom et mise en surbrillance néon.
+   - Défilement continu fluide des technologies maîtrisées : React 19, TypeScript, Node.js, Express, PostgreSQL, MySQL, Python, Java & Spring Boot, Docker, Git, Flutter, Ollama, Power BI.
 
-5. **Section À Propos & Métriques Clés** :
-   - Diamant holographique 3D flottant avec rotation et ombres portées douces.
-   - Cartes piliers de compétences (Intelligence Artificielle, Ingénierie des données, Produits Full-Stack).
-   - Métriques d'impact (Master Data Science & AI, 04+ Systèmes en production, 10K+ données traitées).
+5. **Console Interactive de Projets Concrets (Flagship Projects)** :
+   - **01 Dashboard de Performance Industrielle · LEONI Wiring Systems** :
+     - Plateforme de supervision temps réel (Socket.IO), TRS / OEE, télémétrie des machines CNC, Pareto 80/20 de conformité qualité, gestion des stocks de câblage et module RH de calcul de paie.
+   - **02 Plateforme de Gestion Hôtelière · GIGA MANAGER** :
+     - Application web sur-mesure (PHP / MySQL / Merise), calendrier dynamique de réservation, matrice de disponibilité des chambres, facturation et gestion des rôles.
+   - **03 AI Legal Assistant · RAG Droit Marocain** :
+     - Pipeline RAG souverain (LangChain, ChromaDB, Ollama locale), recherche sémantique vectorielle bilingue (Français & Arabe RTL), citations vérifiables des codes de lois (Constitution, Moudawana, DOC).
+   - **04 Market Sentiment AI & NLP Big Data** :
+     - Pipeline Big Data analytique ingérant 10k+ dépêches et réseaux sociaux (Twitter, Reddit, Reuters, Bloomberg), classification NLP de sentiment et tableaux de bord décisionnels Power BI.
+   - **Console Mockup & Lightbox** :
+     - Barre de navigation macOS avec pastille de statut live et URL sécurisée.
+     - Légende dynamique contextuelle se synchronisant instantanément lors du clic sur une miniature.
+     - Lightbox plein écran haute définition au clic (ou touche Échap).
 
-6. **Section Expertise (Services 01 à 05)** :
-   - Numérotation géante dans un arrière-plan violet cosmique profond (`#18011F`).
-   - Lignes interactives avec révélation de chips techniques au survol.
+6. **Parcours Académique & Professionnel** :
+   - Cycle d'Ingénieur Informatique à l'Université Mundiapolis (2025 – 2027).
+   - Expériences professionnelles chez LEONI Wiring Systems, GIGA MANAGER et AgriSani.
+   - Certification AWS Academy Cloud Foundations.
 
-7. **Vitrine Projets Interactifs (Flagship Projects)** :
-   - **01 AI Legal Assistant** (RAG Gen AI — Droit Marocain, LangChain, ChromaDB, citation bilingue FR/AR).
-   - **02 Market Sentiment AI** (Big Data NLP, 10k+ articles analysés, Power BI Dashboard).
-   - **03 Oil Spill Detection** (Vision par ordinateur sur imagerie satellite SAR, IoU 0.88).
-   - **04 CLV — Dislog Group** (Data Science Client, XGBoost, K-Means, AUC-ROC 0.81).
-   - **Console de captures interactives** : navigation multi-écrans avec miniatures et zoom plein écran lightbox au clic.
+7. **Assistant IA Virtuel J.A.R.V.I.S** :
+   - Réacteur holographique interactif en bas à droite avec anneaux rotatifs.
+   - Moteur conversationnel contextuel capable de répondre en direct sur le profil, le parcours, les projets, le stack technique et les coordonnées de Chouaib.
 
-8. **Section Contact "LET'S TALK" avec Effet TrueFocus** :
-   - Titre animé avec cadre lumineux de visée changeant de mot avec des coins néon pulsants.
-   - Bouton de copie d'e-mail instantané avec notification et explosion de confettis (`canvas-confetti`).
-   - Liens directs vers LinkedIn et GitHub.
-   - Formulaire de contact moderne et fluide.
-
-9. **Assistant IA Virtuel J.A.R.V.I.S** :
-   - Réacteur holographique rotatif en bas à droite avec anneaux concentriques inversés.
-   - Infobulle intelligente apparaissant au scroll.
-   - Fenêtre de chat avec effet dactylo (typewriter) et moteur de réponses contextuelles (projets, stack, disponibilité, contact, etc.).
+8. **Section Contact Direct** :
+   - Copie instantanée de l'e-mail et du téléphone avec explosion de confettis (`canvas-confetti`).
+   - Téléchargement immédiat du CV PDF (`CV_Laanaya_Chouaib.pdf`).
+   - Formulaire de message direct avec badges de sujets interactifs.
 
 ---
 
 ## 🚀 Démarrage Rapide
 
-### Prérequis
-- [Node.js](https://nodejs.org/) (v18 ou supérieur)
-- npm
-
-### Installation & Lancement en local
-
+### Option 1 : Lancement Sans NPM (Serveur Python Local)
+Double-cliquez simplement sur :
 ```bash
-# Se placer dans le dossier du portfolio
+lancer_sans_npm.bat
+```
+Ou dans un terminal :
+```bash
+python serveur.py
+```
+Le portfolio sera accessible immédiatement sur :
+- **Sur ce PC** : `http://localhost:5000`
+- **Sur mobile / réseau local Wi-Fi** : `http://<VOTRE_IP_LOCALE>:5000`
+
+### Option 2 : Lancement avec Node.js & Vite (Développement)
+```bash
+# Se placer dans le dossier
 cd C:\Users\pc_A\portfolio
 
-# Lancer le serveur de développement Vite
+# Lancer le serveur Vite
 npm run dev
-```
 
-Ouvrez ensuite l'URL indiquée dans votre terminal (par défaut `http://localhost:5173/`).
-
-### Construction pour la Production
-
-```bash
-# Générer le bundle optimisé
+# Générer le bundle de production optimisé dans dist/
 npm run build
-
-# Prévisualiser la version de production localement
-npm run preview
 ```
 
 ---
 
-## 🛠️ Structure du Projet
+## 🛠️ Structure Nettoyée du Projet
 
 ```
 portfolio/
-├── public/                 # Assets statiques & captures haute résolution
-│   ├── head.png            # Avatar 3D central
-│   ├── legal/              # Captures du projet AI Legal Assistant
-│   ├── Sentiement/         # Captures du projet Market Sentiment AI
-│   ├── oilspill/           # Captures du projet Oil Spill Detection
-│   ├── clv/                # Captures du projet CLV Dislog Group
-│   └── [technos]/          # Logos vectoriels SVG du stack
+├── dist/                      # Version de production compilée et optimisée
+├── public/                    # Assets statiques & captures haute définition
+│   ├── e889c03e-d4ff-4943-b903-46e64fb613f1.png # Avatar 3D
+│   ├── CV_Laanaya_Chouaib.pdf # CV officiel de Chouaib LAANAYA
+│   ├── leoni/                 # Captures du dashboard usine LEONI
+│   ├── hotel/                 # Captures du PMS hôtelier GIGA MANAGER
+│   ├── legal/                 # Captures du RAG AI Legal Assistant
+│   ├── Sentiement/            # Captures du Market Sentiment Power BI
+│   └── [technos]/             # Logos vectoriels SVG du stack (React, Node, etc.)
 ├── src/
 │   ├── components/
-│   │   ├── AboutSection.jsx          # Section À Propos & Diamant 3D
-│   │   ├── ContactSection.jsx        # Contact, TrueFocus & Formulaire
-│   │   ├── ExpertiseSection.jsx      # Sections 01-05 & Services
-│   │   ├── GeometricDecorations.jsx  # Formes 3D (Sphère, Anneau, Diamant)
-│   │   ├── HeroSection.jsx           # Hero, Avatar 3D & Titre géant
+│   │   ├── AboutSection.jsx          # Parcours académique, diplômes & certifications
+│   │   ├── ContactSection.jsx        # Contact, copie rapide, CV & message direct
+│   │   ├── ExpertiseSection.jsx      # Domaines de compétences & architectures
+│   │   ├── HeroSection.jsx           # Hero cinématique, avatar 3D & statut live
 │   │   ├── JarvisAssistant.jsx       # Assistant IA conversationnel J.A.R.V.I.S
-│   │   ├── LogoMarquee.jsx           # Défilement infini des technos
-│   │   ├── Navbar.jsx                # Barre de navigation flottante
+│   │   ├── LogoMarquee.jsx           # Défilement infini des logos du tech stack
+│   │   ├── Navbar.jsx                # Barre de navigation flottante avec bascule thème
 │   │   ├── NeuralBackground.jsx      # Toile Three.js WebGL Constellation
-│   │   ├── ProjectsSection.jsx       # Projets, carousel & modal zoom
-│   │   ├── SocialIcons.jsx           # Icônes SVG optimisées (GitHub, LinkedIn)
-│   │   ├── TargetCursor.jsx          # Curseur cyberpunk réticule cible
-│   │   └── TrueFocus.jsx             # Effet de focus néon sur le texte
-│   ├── App.jsx                       # Assemblage principal de l'application
+│   │   ├── ProjectsSection.jsx       # Vitrine de projets concrets & console HD
+│   │   ├── SocialIcons.jsx           # Icônes SVG vectorielles optimisées
+│   │   └── TargetCursor.jsx          # Curseur cyberpunk réticule cible
+│   ├── App.jsx                       # Assemblage principal React
 │   ├── index.css                     # Styles Tailwind v4 & animations CSS
 │   └── main.jsx                      # Point d'entrée React
-├── index.html                        # Base HTML avec police Kanit
-├── package.json
-└── vite.config.js                    # Configuration Vite & Tailwind
+├── index.html                        # Application complète et autonome
+├── lancer_sans_npm.bat               # Script de lancement rapide en un clic
+├── serveur.py                        # Serveur HTTP local autonome en Python
+├── package.json                      # Dépendances Vite, Tailwind CSS & React
+└── vite.config.js                    # Configuration de build Vite
 ```
-
----
-
-## 🌐 Déploiement
-
-Ce portfolio est 100% statique et prêt à être déployé en un clic :
-
-- **Cloudflare Pages** : Connectez votre dépôt Git ou glissez-déposez le dossier `dist/`.
-- **Vercel** : Exécutez `vercel` ou importez le projet sur le tableau de bord Vercel (Framework : Vite, Output directory : `dist`).
-- **Netlify** : Déposez directement le dossier `dist/` sur Netlify Drop.

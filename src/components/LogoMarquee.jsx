@@ -19,7 +19,7 @@ export default function LogoMarquee() {
   const duplicated = [...TECH_STACK, ...TECH_STACK];
 
   return (
-    <div className="relative w-full py-8 overflow-hidden select-none border-y border-white/[0.06] bg-[#050507]">
+    <div className="relative w-full py-8 overflow-hidden select-none border-y border-white/[0.06] bg-[#050507]/60 backdrop-blur-md">
       {/* Edge gradient fade masks */}
       <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-28 sm:w-48 z-10 bg-gradient-to-r from-[#050507] via-[#050507]/80 to-transparent" />
       <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-28 sm:w-48 z-10 bg-gradient-to-l from-[#050507] via-[#050507]/80 to-transparent" />
